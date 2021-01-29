@@ -1,0 +1,17 @@
+.summary {
+    background: $off-white;
+    margin: $l-size, 0 ;
+    padding: $l-size 0;
+}
+
+.summary__title {
+    font-weight: 300;
+    margin: 0;
+    span {
+        font-weight: bold;
+    }
+}
+
+.summary__actions {
+    margin-top: $m-size;
+}
