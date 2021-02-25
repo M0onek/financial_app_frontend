@@ -22,6 +22,7 @@ const IncomesSummary = ({ incomeCount, incomesTotal }, props) => {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.activeAccount.activeAccountId)
     const visibleIncomes = selectIncomes(state.incomes, state.filters, state.activeAccount);
     return {
         incomeCount: visibleIncomes.length,

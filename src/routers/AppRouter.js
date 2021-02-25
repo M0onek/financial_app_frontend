@@ -34,13 +34,13 @@ const AppRouter = () => (
                 <ProtectedRoute path='/accounts' component={AccountPage} exact={true} />
                 <ProtectedRoute path='/accounts/:accountId/edit' component={EditAccountPage} />
 
-                <ProtectedRoute path='/accounts/:accountId/expense_categories' component={ExpenseCategoriesPage} exact={true} />
+                <ProtectedRoute path='/expense_categories' component={ExpenseCategoriesPage} exact={true} />
                 {/* <Route path='/expense_categories/create' component={EditExpenseCategoriesPage} /> */}
-                <ProtectedRoute path='/accounts/:accountId/expense_categories/:categoryId/edit' component={EditExpenseCategoriesPage} />
+                <ProtectedRoute path='/expense_categories/:categoryId/edit' component={EditExpenseCategoriesPage} />
 
-                <ProtectedRoute path='/accounts/:accountId/income_categories' component={IncomeCategoriesPage} exact={true} />
+                <ProtectedRoute path='/income_categories' component={IncomeCategoriesPage} exact={true} />
                 {/* <Route path='/income_categories/create' component={EditIncomeCategoriesPage} /> */}
-                <ProtectedRoute path='/accounts/:accountId/income_categories/:categoryId/edit' component={EditIncomeCategoriesPage} />
+                <ProtectedRoute path='/income_categories/:categoryId/edit' component={EditIncomeCategoriesPage} />
 
                 <ProtectedRoute path='/accounts/:accountId/incomes' component={IncomeDashbordPage} exact={true} />
                 <ProtectedRoute path='/accounts/:accountId/incomes/create' component={AddIncomePage} />

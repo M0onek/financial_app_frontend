@@ -35,14 +35,14 @@ class SignupForm extends React.Component {
         const email = event.target.value;
         this.setState(() => ({ email }));
         let errors = this.state.errors;
-        errors.email = validEmailRegex.test(event.target.value) ? '' : 'Email is not valid!';
+        errors.email = validEmailRegex.test(event.target.value) ? '' : 'Email is not valid';
     };
 
     onPasswordChange = (event) => {
         const password = event.target.value;
         this.setState(() => ({ password }));
         let errors = this.state.errors;
-        errors.password = event.target.value.length < 8 ? 'Password must be 8 characters long!' : '';
+        errors.password = event.target.value.length < 8 ? 'Password must be 8' : '';
     };
 
     onSubmit = ((event) => {

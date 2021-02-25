@@ -5,7 +5,7 @@ import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import { fillAccounts } from './actions/accounts';
+import { fillAccounts, getAccounts } from './actions/accounts';
 import { setActiveAccountId } from './actions/activeAccount';
 import { getExpenseCategories } from './actions/expenseCategories';
 import { getIncomeCategories } from './actions/incomeCategories';
@@ -34,18 +34,24 @@ const isAuthenticated = localStorage.getItem('user');
         const user = JSON.parse(localStorage.getItem('user'));
         console.log(user);
         store.dispatch(fillAccounts(user.accounts));
-        if (user.accounts.length !== 0 || state.accounts.length !== 0) {
-            if(state.accounts.length !== 0) {
-                const activeAccountId = state.accounts[0].accountId;
-            } else {
-                const activeAccountId = user.accounts[0].accountId;
+        store.dispatch(getAccounts);
+        if(user.accounts) {
+            if (user.accounts.length !== 0 || state.accounts.length !== 0) {
+                // let activeAccountId = '';
+                // if(state.accounts.length !== 0) {
+                    // activeAccountId = state.accounts[0].accountId;
+                // } else {
+                    activeAccountId = user.accounts[0].accountId;
+                // }
+                console.log(activeAccountId);
+                store.dispatch(setActiveAccountId({accountId: activeAccountId}))
+                store.dispatch(getExpenseCategories({ id: activeAccountId }));
+                store.dispatch(getIncomeCategories({ id: activeAccountId }));
+                store.dispatch(getExpenses({ id: activeAccountId }));
+                store.dispatch(getIncomes({ id: activeAccountId }));
             }
-            store.dispatch(setActiveAccountId({accountId: activeAccountId}))
-            store.dispatch(getExpenseCategories({ id: activeAccountId }));
-            store.dispatch(getIncomeCategories({ id: activeAccountId }));
-            store.dispatch(getExpenses({ id: activeAccountId }));
-            store.dispatch(getIncomes({ id: activeAccountId }));
         }
+        
     }  
     
 

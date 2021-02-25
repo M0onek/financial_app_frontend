@@ -7,14 +7,16 @@ const EditIncomeCategoriesPage = (props) => {
     return (
         <div>
             <IncomeCategoriesForm
-            category={props.incomeCategory}
+            category={props.incomeCategories.find((category)  => {
+                category.categoryId === this.props.activeAccountId
+            })}
             onSubmit={(category) => {
                 props.dispatch(editIncomeCategory({ id: props.activeAccountId }, category));
-                props.history.push(`/accounts/${props.activeAccountId}/income_categories`);
+                props.history.push(`/income_categories`);
             }} />
             <button onClick={() => {
                 props.dispatch(removeIncomeCategory({ id: props.activeAccountId }))
-                props.history.push(`/accounts/${props.activeAccountId}/income_categories`);
+                props.history.push(`/income_categories`);
             }}>Delete</button>
         </div>
     );
@@ -22,9 +24,10 @@ const EditIncomeCategoriesPage = (props) => {
 
 const mapStateToProps = (state, props) => {
     return {
-        incomeCategory: state.incomeCategories.find((category)  => {
-            category.categoryId === props.match.params.categoryId
-        }),
+        incomeCategories: state.incomeCategories,
+        // .find((category)  => {
+        //     category.categoryId === props.match.params.categoryId
+        // }),
         activeAccountId: state.activeAccount.activeAccountId
     };
 };

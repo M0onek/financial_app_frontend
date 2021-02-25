@@ -25,6 +25,7 @@ export const addAccount = ( account = '' ) => {
 
 export const getAccounts = () => {
     return (dispatch) => {
+        console.log('buuuuuuuuu')
         return axios.get('accounts',
         { headers: authHeader() })
         .then(res => {

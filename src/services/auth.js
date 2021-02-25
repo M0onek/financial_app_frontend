@@ -33,8 +33,11 @@ class Auth {
         store.dispatch(getIncomeCategories({ id: activeAccountId }));
         store.dispatch(getExpenses({ id: activeAccountId }));
         store.dispatch(getIncomes({ id: activeAccountId }));
+        history.push('/home');
+      } else {
+        history.push('/accounts');
       }
-      history.push('/home');
+      
     }).catch((error) => {
       console.log('error', error);
     });
