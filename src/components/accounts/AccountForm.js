@@ -29,7 +29,7 @@ class AccountForm extends React.Component {
 
     render() {
         return (
-            <div className='content-container'>
+            <div>
                 
                 <form className='form' onSubmit={this.onSubmit}>
                 {this.state.error && <p className='form__error'>{this.state.error}</p>}

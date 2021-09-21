@@ -6,9 +6,18 @@
     font-size: $font-size-large;
     font-weight: 300;
     line-height: 1;
-    padding: $s-size;
-    margin-top: 2rem;
+    padding: $s-size $l-size;
     text-decoration: none;
+    border-radius: $radius;
+}
+
+.button:hover {
+    background: lighten($blue, 10);
+    color: white;
+}
+
+.button--no-margin {
+    margin: 0;
 }
 
 .button--link {

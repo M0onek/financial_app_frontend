@@ -59,6 +59,11 @@ class IncomeForm extends React.Component {
         }
     })
 
+    onAddCategory = (event) => {
+        event.preventDefault();
+        // TODO: show modal
+    }
+
     categoryOptions = (categories) => {
         let options = [];
         categories.forEach((category) => {
@@ -79,21 +84,30 @@ class IncomeForm extends React.Component {
                         onChange={this.onAmountChange}
                         autoFocus
                     />
-                    <SingleDatePicker
-                        date={this.state.date}
-                        onDateChange={this.onDateChange}
-                        focused={this.state.calendarFocused}
-                        onFocusChange={this.onFocusChange}
-                        numberOfMonths={1}
-                        isOutsideRange={(day) => false}
-                    />
-                    <select
-                        className='select'
-                        value={this.state.categoryId} 
-                        onChange={this.onIncomeCategoryChange}>
-                        <option disabled value='default'>Choose category</option>
-                        {this.categoryOptions(this.props.incomeCategories)}
-                    </select>
+                    <div className="SingleDatePicker--no-margin">
+                        <SingleDatePicker
+                            date={this.state.date}
+                            onDateChange={this.onDateChange}
+                            focused={this.state.calendarFocused}
+                            onFocusChange={this.onFocusChange}
+                            numberOfMonths={1}
+                            isOutsideRange={(day) => false}
+                        />
+                    </div>
+                    <div className="flex">
+                        <select
+                            className='select flex__grow radius-left'
+                            value={this.state.categoryId} 
+                            onChange={this.onIncomeCategoryChange}>
+                            <option disabled value='default'>Choose category</option>
+                            {this.categoryOptions(this.props.incomeCategories)}
+                        </select>
+                        <button
+                            className="button button--no-margin radius-right"
+                            onClick={this.onAddCategory}>
+                            New
+                        </button>
+                    </div>
                     <textarea
                         className='textarea'
                         placeholder='Add a comment (optional)'

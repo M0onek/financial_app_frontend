@@ -25,7 +25,7 @@ class IncomeCategoriesListItem extends React.Component {
     render() {
         return (
             <div>
-                <Link className='list-item' to={`/accounts/${this.props.activeAccountId}/income_categories/${this.state.categoryId}`}>
+                <Link className='list-item' to={`/income_categories/${this.state.categoryId}/edit`}>
                     <h3 className='list-item__title'>{this.state.name}</h3>
                     <h3 className='list-item__data'>Total amount earned: {this.getCategoryAmount(this.props.incomes)}</h3>
                 </Link>

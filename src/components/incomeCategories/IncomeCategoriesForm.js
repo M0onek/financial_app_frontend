@@ -11,19 +11,19 @@ class IncomeCategoriesForm extends React.Component {
     };
     
     onNameChange = (event) => {
-        const name = event.target.value;
-        this.setState(() => ({ name }));
+        const name = event.target.value
+        this.setState(() => ({ name }))
     }
 
     onSubmit = ((event) => {
-        event.preventDefault();
-        if (!this.state.name) {
+        event.preventDefault()
+        const name = this.state.name
+
+        if (!name) {
             this.setState(() => ({ error: 'Please provide name for your income category.' }))
         } else {
-            this.setState(() => ({ error: '' }));
-            this.props.onSubmit({
-                name: this.state.name
-            })
+            this.setState(() => ({ error: '', name: '' }))
+            this.props.onSubmit({ name })
         }
     });
 

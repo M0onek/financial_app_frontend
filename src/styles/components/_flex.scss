@@ -1,0 +1,26 @@
+.flex {
+    display: flex;
+}
+
+.flex--grow > * {
+    flex-grow: 1;
+}
+
+.flex__grow {
+    flex-grow: 1;
+}
+
+.flex-columns {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+        flex-grow: 1;
+    }
+}
+
+@media (min-width: 100rem) {
+    .flex-columns {
+        flex-direction: row;
+    }
+}

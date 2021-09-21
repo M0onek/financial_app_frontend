@@ -36,12 +36,12 @@ const isAuthenticated = localStorage.getItem('user');
         store.dispatch(fillAccounts(user.accounts));
         store.dispatch(getAccounts);
         if(user.accounts) {
-            if (user.accounts.length !== 0 || state.accounts.length !== 0) {
+            if (user.accounts.length !== 0/* || state.accounts.length !== 0*/) {
                 // let activeAccountId = '';
                 // if(state.accounts.length !== 0) {
                     // activeAccountId = state.accounts[0].accountId;
                 // } else {
-                    activeAccountId = user.accounts[0].accountId;
+                    let activeAccountId = user.accounts[0].accountId;
                 // }
                 console.log(activeAccountId);
                 store.dispatch(setActiveAccountId({accountId: activeAccountId}))

@@ -1,38 +1,26 @@
-const incomeCategoriesReducerDefaultState = [];
-
-export default (state = incomeCategoriesReducerDefaultState, action) => {
+export default (state = [], action) => {
     switch(action.type) {
-        case 'ADD_INCOME_CATEGORY' :
-            console.log(action.type);
-            return [
-                ...state,
-                action.incomeCategory,
-            ];
-        case 'GET_INCOME_CATEGORIES' :
-            console.log(action.type);
-            return state = action.incomeCategories;
-        case 'GET_ONE_INCOME_CATEGORY' :
-            console.log(action.type);
-            return [
-                ...state,
-                action.incomeCategory
-            ];
-        case 'EDIT_INCOME_CATEGORY' :
-            console.log(action.type)
-            return state.map((incomeCategory) => {
-                if (incomeCategory.categoryId === action.categoryId) {
-                    return {
-                        ...incomeCategory,
-                        ...action.updates
-                    };
-                } else {
-                    return incomeCategory;
-                }
-            })
-        case 'REMOVE_INCOME_CATEGORY' :
-            console.log(action.type);
-            return state.filter(({categoryId}) => categoryId !== action.categoryId);
+
+        case 'ADD_INCOME_CATEGORY':
+            return [ ...state, action.incomeCategory ]
+
+        case 'GET_INCOME_CATEGORIES':
+            return action.incomeCategories
+
+        case 'GET_ONE_INCOME_CATEGORY':
+            return [ ...state, action.incomeCategory ]
+
+        case 'EDIT_INCOME_CATEGORY':
+            return state.map((incomeCategory) =>
+                incomeCategory.categoryId === action.categoryId
+                ? { ...incomeCategory, ...action.updates }
+                : incomeCategory
+            )
+
+        case 'REMOVE_INCOME_CATEGORY':
+            return state.filter(({categoryId}) => categoryId !== action.categoryId)
+
         default:
-            return state;
+            return state
     }
 };

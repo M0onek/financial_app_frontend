@@ -1,0 +1,7 @@
+.radius-left {
+    border-radius: $radius 0 0 $radius !important;
+}
+
+.radius-right {
+    border-radius: 0 $radius $radius 0 !important;
+}

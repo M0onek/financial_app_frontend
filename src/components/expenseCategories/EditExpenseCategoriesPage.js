@@ -8,7 +8,7 @@ const EditExpenseCategoriesPage = (props) => {
         <div>
             <ExpenseCategoriesForm
             category={props.expenseCategories.find((category) => {
-                category.categoryId === this.props.activeAccountId
+                category.categoryId === props.activeAccountId
             })}
             onSubmit={(category) => {
                 props.dispatch(editExpenseCategory({ id: props.activeAccountId }, category));

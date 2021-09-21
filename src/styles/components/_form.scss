@@ -10,3 +10,20 @@
     margin: 0, 0, $m-size 0;
     font-style: italic;
 }
+
+.form__alert {
+    color: $red;
+    line-height: 1.2;
+    text-align: left;
+    background: $light-red;
+    padding: $s-size;
+    border-radius: $radius;
+    border: 1px solid $red;
+}
+
+.form__error {
+    color: $red;
+    line-height: 1.2;
+    text-align: left;
+    padding-left: $s-size;
+}

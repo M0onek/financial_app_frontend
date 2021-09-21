@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setActiveAccountId } from '../../actions/activeAccount';
 
 class AccountSelector extends React.Component {
+
     onAccountsChange = (event) => {
         const accountId = event.target.value
         this.props.dispatch(setActiveAccountId({ accountId }));
@@ -18,15 +19,15 @@ class AccountSelector extends React.Component {
 
     render() {
         return (
-            <div>
-                <select
-                    className='select'
-                    value={this.props.activeAccount.activeAccountId}
-                    onChange={this.onAccountsChange} label='Choose active account'>
-                    <option disabled value='default'>Choose account</option>
-                    {this.accountOptions(this.props.accounts)}
-                </select>
-            </div>
+            <select
+                id="account-selector__select"
+                className='select select--account'
+                value={this.props.activeAccount.activeAccountId}
+                onChange={this.onAccountsChange} label='Choose active account'
+                ref={this.selectRef}>
+                <option disabled value='default'>Choose account</option>
+                {this.accountOptions(this.props.accounts)}
+            </select>
         )
     }
 }

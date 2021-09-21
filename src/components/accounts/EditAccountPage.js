@@ -9,6 +9,7 @@ const EditAccountPage = (props) => {
             <AccountForm
             account={props.account}
             onSubmit={(account) => {
+                // TODO: update localStorage
                 props.dispatch(editAccount({ id: props.account.accountId }, account));
                 props.history.push('/accounts');
             }} />

@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-class ExpenseCategoriesForm extends React.Component {
+class CategoriesForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: props.expenseCategories ? props.expenseCategories.name : '',
+            name: props.category ? props.category.name : '',
             error: ''
         };
     };
@@ -16,14 +16,16 @@ class ExpenseCategoriesForm extends React.Component {
     }
 
     onSubmit = ((event) => {
-        event.preventDefault();
+        event.preventDefault()
         const name = this.state.name
 
         if (!name) {
-            this.setState(() => ({ error: 'Please provide name for your expense category.' }))
+            this.setState(() => ({ error: 'Please provide name for your category.' }))
         } else {
             this.setState(() => ({ error: '', name: '' }))
             this.props.onSubmit({ name })
+
+            // TODO: category already exists
         }
     });
 
@@ -47,4 +49,4 @@ class ExpenseCategoriesForm extends React.Component {
     }
 }
 
-export default ExpenseCategoriesForm;
+export default CategoriesForm;

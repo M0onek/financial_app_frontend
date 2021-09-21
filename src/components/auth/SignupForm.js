@@ -63,7 +63,7 @@ class SignupForm extends React.Component {
         const {errors} = this.state;
         return (
             <div>
-                {this.state.error && <p>{this.state.error}</p>}
+                {this.state.error && <p className="form__alert">{this.state.error}</p>}
                 <form onSubmit={this.onSubmit}>
                     <input className='input'
                         type='text'
@@ -78,14 +78,14 @@ class SignupForm extends React.Component {
                         value={this.state.email}
                         onChange={this.onEmailChange}
                     />
-                    {errors.email.length > 0 && <span>{errors.email}</span>}
+                    {errors.email.length > 0 && <span className="form__error">{errors.email}</span>}
                     <input className='input'
                         type='password'
                         placeholder='password'
                         value={this.state.password}
                         onChange={this.onPasswordChange}
                     />
-                    {errors.password.length > 0 && <span>{errors.password}</span>}
+                    {errors.password.length > 0 && <span className="form__error">{errors.password}</span>}
                     <button className='button'>Sign Up</button>
                     <div><a className='anchor' href="/login">Login.</a></div>
                     

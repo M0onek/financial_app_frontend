@@ -4,13 +4,51 @@
     font-size: $font-size-large;
     font-weight: 300;
     padding: $s-size;
+    border-radius: $radius;
 }
 
 .select {
     @extend .text-input;
+    background: $off-white;
+    cursor: pointer;
 }
 
 .textarea {
     @extend .text-input;
-    height: 10rem;
+    min-height: 6rem;
+    max-width: 100%;
+    min-width: 100%;
 }
+
+.select--account {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: bold;
+
+    &:hover {
+        border: 1px solid #cacccd;
+        margin: 0 -1px -1px -1px;
+    }
+
+    option {
+        color: black;
+    }
+
+    option:disabled {
+        color: gray;
+    }
+}
+
+
+
+ .SingleDatePicker--no-margin {
+    .SingleDatePicker {
+        width: 100%;
+    }
+
+    .DateInput {
+        width: 100%;
+    }
+ }

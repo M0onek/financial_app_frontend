@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import userReducer from '../reducers/userReducer';
 import accountsReducer from '../reducers/accountsReducer';
 import thunk from 'redux-thunk';
@@ -21,7 +21,10 @@ export default () => {
             filters: filtersReducer,
             activeAccount: activeAccountReducer
         }),
-        applyMiddleware(thunk)
+        compose(
+            applyMiddleware(thunk),
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+        )
     );
     return store;
 };

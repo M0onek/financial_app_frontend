@@ -8,12 +8,17 @@ import IncomesSummary from './incomes/IncomesSummary'
 
 const DashbordPage = () => (
     <div>
+        <div className='flex-columns'>
+            <div>
+                <IncomesSummary />
+                <IncomeList />
+            </div>
+            <div>
+                <ExpensesSummary />
+                <ExpenseList />
+            </div>
+        </div>
         <IncomeListFilters />
-        <IncomesSummary />
-        <IncomeList />
-        <ExpensesSummary />
-        {/* <ExpenseListFilters /> */}
-        <ExpenseList />
     </div>
 );
 

@@ -1,0 +1,196 @@
+.menu {
+    position: fixed;
+    inset: 0 auto 0 0;
+    background: $blue;
+    width: $menu-size;
+    transition: width $anim-time;
+}
+
+.menu--collapsed {
+    width: 3.5rem;
+}
+
+.menu__margin {
+    margin-left: 2.75rem;
+    transition: margin-left $anim-time;
+}
+
+@media (min-width: $menu-breakpoint) {
+    .menu__margin {
+        margin-left: $menu-size;
+
+        .menu--collapsed + & {
+            margin-left: 2.75rem;
+        }
+    }
+}
+
+.menu__header {
+    background: $light-blue;
+    min-height: 12rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    transition: min-height $anim-time, visibility $anim-time, background $anim-time;
+
+    .menu--collapsed & {
+        min-height: 4rem;
+        background: transparent;
+    }
+
+    h1 {
+        margin: 0 1rem;
+        margin-left: $s-size;
+    }
+
+    .menu__icon {
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+            color: lightgray;
+        }
+
+        .active:hover {
+            color: white;
+        }
+
+        .menu--collapsed &:hover {
+            color: white;
+        }
+    }
+}
+
+.menu__header-item {
+    display: flex;
+    background: transparent;
+    transition: background $anim-time;
+}
+
+@media (min-width: $menu-breakpoint) {
+    .menu--collapsed .menu__header-item:hover {
+        color: lightgray;
+        background: $dark-blue;
+    }
+}
+
+.menu__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-top: 1.5rem;
+    transition: padding-top $anim-time;
+
+    .menu--collapsed & {
+        padding-top: 0;
+    }
+
+    hr {
+        margin: 1rem 1rem;
+        border-color: white;
+        transition: margin $anim-time;
+
+        .menu--collapsed & {
+            margin: 0.5rem 1rem;
+        }
+
+        &.menu--collapsed-only {
+            visibility: hidden;
+            opacity: 0;
+            margin: 0;
+            transition-property: opacity, visibility, margin;
+            transition-duration: 0ms, $anim-time, $anim-time;
+            transition-delay: 0ms;
+
+            .menu--collapsed & {
+                transition-delay: $anim-time, $anim-time, 0ms;
+                visibility: visible;
+                margin: 0.5rem 1rem;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.menu__title {
+    color: white;
+    text-decoration: none;
+
+    h1 {
+        margin-right: $m-size;
+    }
+
+    &:hover {
+        color: white;
+    }
+}
+
+.menu__link {
+    display: flex;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 0.3rem 0rem;
+    background: transparent;
+    transition: background $anim-time;
+
+    
+    &:hover {
+        color: lightgray;
+    }
+
+    &.active:hover {
+        color: white;
+    }
+
+    .menu__icon {
+        color: lightgray;
+    }
+
+    &.active .menu__icon {
+        color: white;
+    }
+}
+
+@media (min-width: $menu-breakpoint) {
+    .menu__link:hover {
+        background: $dark-blue;
+    }
+}
+
+.menu__text {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity $anim-time, visibility $anim-time;
+
+    .menu--collapsed & {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+.menu__icon {
+    font-size: 2rem;
+    align-self: center;
+    margin: 0 0.5rem;
+    padding: 0.35rem;
+    user-select: none;
+    background: transparent;
+    border-radius: 0rem;
+    transition: background $anim-time, border-radius $anim-time;
+
+    .active & {
+        background: $dark-blue;
+        border-radius: 1rem;
+    }
+}
+
+.select--account {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity $anim-time, visibility $anim-time;
+
+    .menu--collapsed & {
+        visibility: hidden;
+        opacity: 0;
+    }
+}

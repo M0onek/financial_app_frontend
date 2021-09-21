@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
         const {errors} = this.state;
         return (
             <div>
-                {this.state.error && <p>{this.state.error}</p>}
+                {this.state.error && <p className="form__alert">{this.state.error}</p>}
                 <form onSubmit={this.onSubmit}>
                     <input className='input'
                         type='email'
@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
                         onChange={this.onEmailChange}
                         autoFocus
                     />
-                    {errors.email.length > 0 && <span>{errors.email}</span>}
+                    {errors.email.length > 0 && <div className="form__error">{errors.email}</div>}
                     <input className='input'
                         type='password'
                         name='password'
@@ -75,7 +75,7 @@ class LoginForm extends React.Component {
                         value={this.state.password}
                         onChange={this.onPasswordChange}
                     />
-                    {errors.password.length > 0 && <div>{errors.password}</div>}
+                    {errors.password.length > 0 && <div className="form__error">{errors.password}</div>}
                     <button className='button'>Login</button>
                     <div><a className='anchor' href="/signup">Create an account.</a></div>
                 </form>

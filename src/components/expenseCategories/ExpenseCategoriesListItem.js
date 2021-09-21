@@ -25,7 +25,7 @@ class ExpenseCategoriesListItem extends React.Component {
     render() {
         return (
             <div>
-                <Link className='list-item' to={`/accounts/${this.props.activeAccountId}/expense_categories/${this.state.categoryId}`}>
+                <Link className='list-item' to={`/expense_categories/${this.state.categoryId}/edit`}>
                     <h3 className='list-item__title'>{this.state.name}</h3>
                     <h3 className='list-item__data'>Total amount spend: {this.getCategoryAmount(this.props.expenses)}</h3>
                 </Link>                

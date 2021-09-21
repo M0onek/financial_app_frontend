@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import auth from '../services/auth';
 import { connect } from 'react-redux';
-import Header from '../components/Header';
+import Menu from '../components/Menu';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
     const isAuthenticated = localStorage.getItem('user');
@@ -13,8 +13,10 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
                 if (isAuthenticated) {
                     return (
                         <div>
-                            <Header />
-                            <Component {...props} />
+                            <Menu />
+                            <div className="menu__margin">
+                                <Component {...props} />
+                            </div>
                         </div>
                     )
                 } else {

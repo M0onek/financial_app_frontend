@@ -7,6 +7,7 @@ import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/auth/LoginPage';
 import AccountPage from '../components/accounts/AccountPage';
 import EditAccountPage from '../components/accounts/EditAccountPage';
+import CategoriesPage from '../components/categories/CategoriesPage';
 import IncomeCategoriesPage from '../components/incomeCategories/IncomeCategoriesPage';
 import EditIncomeCategoriesPage from '../components/incomeCategories/EditIncomeCategoriesPage';
 import ExpenseCategoriesPage from '../components/expenseCategories/ExpenseCategoriesPage';
@@ -34,13 +35,15 @@ const AppRouter = () => (
                 <ProtectedRoute path='/accounts' component={AccountPage} exact={true} />
                 <ProtectedRoute path='/accounts/:accountId/edit' component={EditAccountPage} />
 
-                <ProtectedRoute path='/expense_categories' component={ExpenseCategoriesPage} exact={true} />
-                {/* <Route path='/expense_categories/create' component={EditExpenseCategoriesPage} /> */}
-                <ProtectedRoute path='/expense_categories/:categoryId/edit' component={EditExpenseCategoriesPage} />
+                <ProtectedRoute path='/categories' component={CategoriesPage} exact={true} />
 
                 <ProtectedRoute path='/income_categories' component={IncomeCategoriesPage} exact={true} />
                 {/* <Route path='/income_categories/create' component={EditIncomeCategoriesPage} /> */}
                 <ProtectedRoute path='/income_categories/:categoryId/edit' component={EditIncomeCategoriesPage} />
+
+                <ProtectedRoute path='/expense_categories' component={ExpenseCategoriesPage} exact={true} />
+                {/* <Route path='/expense_categories/create' component={EditExpenseCategoriesPage} /> */}
+                <ProtectedRoute path='/expense_categories/:categoryId/edit' component={EditExpenseCategoriesPage} />
 
                 <ProtectedRoute path='/accounts/:accountId/incomes' component={IncomeDashbordPage} exact={true} />
                 <ProtectedRoute path='/accounts/:accountId/incomes/create' component={AddIncomePage} />

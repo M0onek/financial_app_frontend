@@ -8,7 +8,7 @@ const EditIncomeCategoriesPage = (props) => {
         <div>
             <IncomeCategoriesForm
             category={props.incomeCategories.find((category)  => {
-                category.categoryId === this.props.activeAccountId
+                category.categoryId === props.activeAccountId
             })}
             onSubmit={(category) => {
                 props.dispatch(editIncomeCategory({ id: props.activeAccountId }, category));
