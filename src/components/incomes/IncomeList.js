@@ -18,7 +18,7 @@ const IncomeList = (props) => (
             ) : (
                 props.incomes.map((income) => {
                     const category = selectCategory(props.incomeCategories, income.categoryId)
-                    return <IncomeListItem key={income.incomeId} {...income} category={category}/>
+                    return category ? <IncomeListItem key={income.incomeId} {...income} category={category}/> : ''
                 })
             )
         }

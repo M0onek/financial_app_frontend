@@ -124,6 +124,7 @@ class IncomeForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.activeAccount.activeAccountId)
     return {
         incomeCategories: state.incomeCategories
         // .filter((category) => {

@@ -1,38 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import categories from '../../selectors/categories';
 
 class AccountForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: props.account ? props.account.name : '',
+            name: '',
             error: ''
         };
     };
     
     onNameChange = (event) => {
-        const name = event.target.value;
-        this.setState(() => ({ name }));
+        const name = event.target.value
+        this.setState(() => ({ name }))
     }
 
     onSubmit = ((event) => {
-        event.preventDefault();
-        if (!this.state.name) {
+        event.preventDefault()
+        const name = this.state.name
+
+        if (!name) {
             this.setState(() => ({ error: 'Please provide name for your account.' }))
         } else {
-            this.setState(() => ({ error: '' }));
-            this.props.onSubmit({
-                name: this.state.name
-            })
+            for (const account of this.props.accounts) {
+                if (account.name === name) {
+                    this.setState(() => ({ error: 'Account already exists.' }))
+                    return
+                }
+            }
+
+            this.setState(() => ({ error: '', name: '' }))
+            this.props.onSubmit({name})
         }
-    });
+    })
 
     render() {
         return (
-            <div>
-                
+            <div className='content-container margin-top'>                
                 <form className='form' onSubmit={this.onSubmit}>
-                {this.state.error && <p className='form__error'>{this.state.error}</p>}
+                    {this.state.error && <p className='form__error'>{this.state.error}</p>}
                     <input
                         className='text-input'
                         type='text'
@@ -41,11 +48,17 @@ class AccountForm extends React.Component {
                         onChange={this.onNameChange}
                         autoFocus
                     />
-                    <button className='button'>Save Account</button>
+                    <button className='button'>Add account</button>
                 </form>
             </div>
         )
     }
 }
 
-export default AccountForm;
+const mapStateToProps = (state, props) => {
+    return {
+        accounts: state.accounts,
+    }
+}
+
+export default connect(mapStateToProps)(AccountForm);

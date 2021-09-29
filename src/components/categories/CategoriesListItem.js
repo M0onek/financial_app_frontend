@@ -1,22 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editAccount, removeAccount } from '../../actions/accounts';
+import { editExpenseCategory, removeExpenseCategory } from '../../actions/expenseCategories';
+import { editIncomeCategory, removeIncomeCategory } from '../../actions/incomeCategories';
 
-class AccountListItem extends React.Component {
+class CategoriesListItem extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             name: props.name ? props.name : '',
+            categoryId: props.categoryId ? props.categoryId : '',
             edit: false,
             newName: props.name ? props.name : '',
         }
+    }
+    
+    getCategoryAmount = (values = []) => {
+        let categoryAmount = 0;
+        values.forEach(val => {
+            if (val.accountId === this.props.activeAccountId && val.categoryId === this.state.categoryId) {
+                let amount = parseFloat(val.amount)
+                categoryAmount += amount
+            }
+        });
+        return categoryAmount
     }
 
     isNameValid = () => {
         const name = this.state.newName
         if (name.length === 0) return false
-        for (const account of this.props.accounts) {
-            if (account.name === name) return false
+        for (const category of this.props.categories) {
+            if (category.name === name) return false
         }
         return true
     }
@@ -34,9 +47,18 @@ class AccountListItem extends React.Component {
         })
     }
 
+    get editCategory() {
+        return this.props.income ? editIncomeCategory : editExpenseCategory
+    }
+
+    get removeCategory() {
+        return this.props.income ? removeIncomeCategory : removeExpenseCategory
+    }
+
     onApplyClick = () => {
-        this.props.dispatch(editAccount(
-            { id: this.props.accountId },
+        this.props.dispatch(this.editCategory(
+            { id: this.props.activeAccountId },
+            { id: this.props.categoryId},
             { name: this.state.newName }
         ))
 
@@ -47,31 +69,29 @@ class AccountListItem extends React.Component {
     }
 
     onDeleteClick = () => {
-        this.props.dispatch(removeAccount(
-            { id: this.props.accountId },
+        this.props.dispatch(this.removeCategory(
+            { id: this.props.activeAccountId },
+            { id: this.props.categoryId }
         ))
     }
 
     renderEditButtons = () => {
         const validName = this.isNameValid()
-        const activeAccount = this.props.accountId === this.props.activeAccountId
 
         return (
             <div className="list-item__button-group">
                 <button className="list-item__button list-item--green material-icons" onClick={this.onApplyClick} disabled={!validName}>done</button>
                 <button className="list-item__button list-item--gray material-icons" onClick={this.onEditClick}>clear</button>
-                <button className="list-item__button list-item--red material-icons" onClick={this.onDeleteClick} disabled={activeAccount}>delete</button>
+                <button className="list-item__button list-item--red material-icons" onClick={this.onDeleteClick}>delete</button>
             </div>
         )
     }
 
     renderNormalButtons = () => {
-        const activeAccount = this.props.accountId === this.props.activeAccountId
-
         return (
             <div className="list-item__button-group">
                 <button className="list-item__button list-item--green material-icons" onClick={this.onEditClick}>edit</button>
-                <button className="list-item__button list-item--red material-icons" onClick={this.onDeleteClick} disabled={activeAccount}>delete</button>
+                <button className="list-item__button list-item--red material-icons" onClick={this.onDeleteClick}>delete</button>
             </div>
         )
     }
@@ -84,6 +104,7 @@ class AccountListItem extends React.Component {
                         ? <input type="text" className="list-item__input" value={this.state.newName} onChange={this.onNameChange} autoFocus/>
                         : <h3 className='list-item__title'>{this.state.name}</h3>
                     }
+                    <h3 className='list-item__data'>Total: {this.getCategoryAmount(this.props.values)}</h3>
                     { this.state.edit
                         ? this.renderEditButtons()
                         : this.renderNormalButtons()
@@ -95,10 +116,13 @@ class AccountListItem extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
+    const income = props.mode === "income"
     return {
-        accounts: state.accounts,
+        values: income ? state.incomes : state.expenses,
+        categories: income ? state.incomeCategories : state.expenseCategories,
         activeAccountId: state.activeAccount.activeAccountId,
+        income
     }
 }
 
-export default connect(mapStateToProps)(AccountListItem);
+export default connect(mapStateToProps)(CategoriesListItem);

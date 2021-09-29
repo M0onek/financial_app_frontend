@@ -13,7 +13,7 @@ const ExpensesSummary = ({ expenseCount, expensesTotal }, props) => {
             <div className='content-container'>
                 <h1 className='summary__title'>Viewing <span>{expenseCount}</span> {expenseWord} totalling <span>{formattedExpensesTotal}</span></h1>
                 <div className='summary__actions'>
-                    <Link className='button' to={`/accounts/${props.activeAccountId}/expenses/create`}>Add Expense</Link>
+                    <Link className='button' to={`/dashboard/expenses/create`}>Add Expense</Link>
                 </div>
             </div>
         </div>

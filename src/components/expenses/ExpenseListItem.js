@@ -5,7 +5,7 @@ import numeral from 'numeral';
 import moment from 'moment';
 
 const ExpenseListItem = ({ expenseId, amount, comment, date, category }, props) => (
-    <Link className='list-item' to={`/accounts/${props.activeAccountId}/expenses/${expenseId}/edit`}>
+    <Link className='list-item' to={`/dashboard/expenses/${expenseId}/edit`}>
         <div>
             <h3 className='list-item__title'>{category.name}</h3>
             <span className='list-item__sub-title'>{moment(date).format('MMMM Do, YYYY')}</span>

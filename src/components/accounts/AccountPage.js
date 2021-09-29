@@ -8,16 +8,14 @@ import { setActiveAccountId } from '../../actions/activeAccount';
 const AccountPage = (props) => (
     <div>
         <AccountList />
-        <div className='content-container'>
-            <AccountForm
-                onSubmit={(account) => {
-                    // let accounts = [];
-                    // const user = JSON.parse(localStorage.getItem('user'));
-                    props.dispatch(addAccount(account));
-                    
-                }}
-            />
-        </div>
+        <AccountForm
+            onSubmit={(account) => {
+                // let accounts = [];
+                // const user = JSON.parse(localStorage.getItem('user'));
+                props.dispatch(addAccount(account));
+                
+            }}
+        />
     </div>
 );
 

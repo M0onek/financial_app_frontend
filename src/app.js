@@ -16,11 +16,10 @@ export const store = configureStore();
 
 // export const persistor = persistor();
 
-const state = store.getState();
-
-store.subscribe(()=> {{
-    console.log(state);
-}})
+// store.subscribe(() => {{
+//     const state = store.getState();
+//     console.log(state);
+// }})
 
 
 const jsx = (
@@ -30,29 +29,19 @@ const jsx = (
 );
 
 const isAuthenticated = localStorage.getItem('user');
-    if (isAuthenticated) {
-        const user = JSON.parse(localStorage.getItem('user'));
-        console.log(user);
-        store.dispatch(fillAccounts(user.accounts));
-        store.dispatch(getAccounts);
-        if(user.accounts) {
-            if (user.accounts.length !== 0/* || state.accounts.length !== 0*/) {
-                // let activeAccountId = '';
-                // if(state.accounts.length !== 0) {
-                    // activeAccountId = state.accounts[0].accountId;
-                // } else {
-                    let activeAccountId = user.accounts[0].accountId;
-                // }
-                console.log(activeAccountId);
-                store.dispatch(setActiveAccountId({accountId: activeAccountId}))
-                store.dispatch(getExpenseCategories({ id: activeAccountId }));
-                store.dispatch(getIncomeCategories({ id: activeAccountId }));
-                store.dispatch(getExpenses({ id: activeAccountId }));
-                store.dispatch(getIncomes({ id: activeAccountId }));
-            }
-        }
-        
-    }  
+if (isAuthenticated) {
+    const activeAccountId = localStorage.getItem('activeAccountId');
+    store.dispatch(getAccounts());
+    
+    if (activeAccountId) {
+        store.dispatch(setActiveAccountId({accountId: activeAccountId}))
+        store.dispatch(getExpenseCategories({ id: activeAccountId }));
+        store.dispatch(getIncomeCategories({ id: activeAccountId }));
+        store.dispatch(getExpenses({ id: activeAccountId }));
+        store.dispatch(getIncomes({ id: activeAccountId }));
+    }
+    
+}  
     
 
 ReactDOM.render(jsx , document.getElementById('app'));

@@ -13,7 +13,7 @@ const IncomesSummary = ({ incomeCount, incomesTotal }, props) => {
             <div className='content-container'>
                 <h1 className='summary__title'>Viewing <span>{incomeCount}</span> {incomeWord} totalling <span>{formattedincomesTotal}</span></h1>
                 <div className='summary__actions'>
-                    <Link className='button' to={`/accounts/${props.activeAccountId}/incomes/create`}>Add Income</Link>
+                    <Link className='button' to={`/dashboard/incomes/create`}>Add Income</Link>
                 </div>
             </div>
             
@@ -22,7 +22,6 @@ const IncomesSummary = ({ incomeCount, incomesTotal }, props) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.activeAccount.activeAccountId)
     const visibleIncomes = selectIncomes(state.incomes, state.filters, state.activeAccount);
     return {
         incomeCount: visibleIncomes.length,

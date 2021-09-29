@@ -28,12 +28,13 @@
     display: flex;
     flex-direction: row;
     border-top: none;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
     color: $dark-grey;
     padding: $m-size;
     text-decoration: none;
     transition: background .3s ease;
+
     &:hover {
         background: $off-white;
         color: $dark-grey;
@@ -41,8 +42,9 @@
 }
 
 .list-item__title {
-    margin: 0;
+    margin: 0 $s-size;
     word-break: break-all;
+    flex-grow: 1
 }
 
 .list-item__sub-title {
@@ -51,6 +53,62 @@
 }
 
 .list-item__data {
-    margin: 0;
+    margin: 0 $s-size;
     padding-left: $s-size;
+    margin-left: auto;
+}
+
+.list-item__button {
+    border: none;
+    border-radius: $radius;
+    padding: 5px;
+}
+
+.list-item--green {
+    color: #C8E6C9; // 100
+    background: #388E3C; // 700
+
+    &:hover,  &:disabled {
+        background: #66BB6A; // 400
+    }
+}
+
+.list-item--gray {
+    color: #F5F5F5; // 100
+    background: #9E9E9E; // 500
+
+    &:hover,  &:disabled  {
+        background: #E0E0E0; // 300
+    }
+}
+
+.list-item--red {
+    color: #FFCDD2; // 100
+    background: #D32F2F; // 700
+
+    &:hover,  &:disabled  {
+        background: #EF5350; // 400
+    }
+}
+
+.list-item__button-group {
+    .list-item__button {
+        border-radius: 0;
+    }
+
+    .list-item__button:first-child {
+        border-radius: $radius 0 0 $radius;
+    }
+
+    .list-item__button:last-child {
+        border-radius: 0 $radius $radius 0;
+    }
+}
+
+.list-item__input {
+    border: 1px solid #cacccd;
+    font-weight: 300;
+    padding: $s-size;
+    border-radius: $radius;
+    flex-grow: 1
 }

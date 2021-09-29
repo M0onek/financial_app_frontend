@@ -8,7 +8,6 @@ class Menu extends React.Component {
     constructor(props) {
         super(props)
         const collapsed = this.isSmallScreen() ? true : localStorage.getItem("menuCollapsed") === "true"
-        console.log("onMenuClick", collapsed);
         // TODO: something is wrong while refreshing
 
         this.state = {
@@ -29,7 +28,6 @@ class Menu extends React.Component {
     onMenuClick = () => {
         const collapsed = !this.menuCollapsed
         if (!this.isSmallScreen()) localStorage.setItem("menuCollapsed", collapsed ? "true" : "false")
-        console.log("onMenuClick", collapsed);
 
         this.setState(() => {
             this.menuCollapsed = collapsed
@@ -46,7 +44,7 @@ class Menu extends React.Component {
                 <div className='menu__header'>
                     <div className="menu__header-item">
                         <span className="material-icons menu__icon" onClick={this.onMenuClick}>menu</span>
-                        <NavLink className="menu__title menu__text" to="/home" activeClassName="active">
+                        <NavLink className="menu__title menu__text" to="/dashboard" activeClassName="active">
                             <h1>Financial_app</h1>
                         </NavLink>
                     </div>
@@ -60,7 +58,7 @@ class Menu extends React.Component {
                     <hr className="menu--collapsed-only"/>
 
                     <li className="menu__list-item">
-                        <NavLink className="menu__link" to="/home" activeClassName="active" onClick={this.onNavClick}>
+                        <NavLink className="menu__link" to="/dashboard" activeClassName="active" onClick={this.onNavClick}>
                             <span className="material-icons menu__icon">dashboard</span>
                             <span className="menu__text">Dashboard</span>
                         </NavLink>

@@ -1,12 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setActiveAccountId } from '../../actions/activeAccount';
+import { getIncomes } from '../../actions/incomes';
+import { getExpenses } from '../../actions/expenses';
+import { getIncomeCategories } from '../../actions/incomeCategories';
+import { getExpenseCategories } from '../../actions/expenseCategories';
 
 class AccountSelector extends React.Component {
 
     onAccountsChange = (event) => {
         const accountId = event.target.value
-        this.props.dispatch(setActiveAccountId({ accountId }));
+        localStorage.setItem('activeAccountId', accountId)
+        this.props.dispatch(setActiveAccountId({ accountId }))
+        this.props.dispatch(getExpenseCategories({ id: accountId }))
+        this.props.dispatch(getIncomeCategories({ id: accountId }))
+        this.props.dispatch(getExpenses({ id: accountId }))
+        this.props.dispatch(getIncomes({ id: accountId }))
     }
 
     accountOptions = (accounts) => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import auth from '../../services/auth'
 
 const validEmailRegex = 
   RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -50,11 +51,14 @@ class SignupForm extends React.Component {
         if (!this.state.email || !this.state.password || !this.state.name || !validateForm(this.state.errors)) {
             this.setState(() => ({ error: 'Please fill in every field correctly!' }))
         } else {
-            this.setState(() => ({ error: '' }));
-            this.props.onSubmit({
+            auth.signup({
                 name: this.state.name,
                 email: this.state.email,
                 password: this.state.password
+            }).then(() => {
+                this.setState(() => ({ error: '' }));
+            }).catch((error) => {
+                this.setState(() => ({ error: error.message }));
             })
         }
     })

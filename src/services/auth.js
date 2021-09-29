@@ -11,35 +11,55 @@ import { getIncomes } from '../actions/incomes';
 
 class Auth {
   signup(userData) {
-    axios.post('/signup', userData).then(res => {
-      const userData = res.data;
-      localStorage.setItem('user', JSON.stringify(userData));
-      history.push('/home');
-  }).catch((error) => {
-      console.log('error', error);
-  });
+    return axios.post('/signup', userData).then(res => {
+      const user = res.data
+      store.dispatch(fillAccounts([user.account]))
+
+      const activeAccountId = user.account.accountId
+      user.account = undefined
+
+      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('activeAccountId', activeAccountId)
+
+      store.dispatch(setActiveAccountId({accountId: activeAccountId}))
+      history.push('/dashboard')
+    }).catch((error) => {
+      if (error.response.status === 400) {
+        throw new Error("Email address is already in use.");
+      } else {
+        console.log('error', error);
+      }
+    });
   }
 
   login(userData) {
-    axios.post('/login', userData).then(res => {
-      const userData = res.data;
-      localStorage.setItem('user', JSON.stringify(userData));
-      const user = JSON.parse(localStorage.getItem('user'));
-      store.dispatch(fillAccounts(user.accounts));
-      if (user.accounts.length !== 0) {
-        const activeAccountId = user.accounts[0].accountId;
+    return axios.post('/login', userData).then(res => {
+      const user = res.data
+      store.dispatch(fillAccounts(user.accounts))
+
+      const activeAccountId = (user.accounts.length !== 0) ? user.accounts[0].accountId : null
+      user.accounts = undefined
+      
+      localStorage.setItem('user', JSON.stringify(user));
+
+      if (activeAccountId !== null) {
+        localStorage.setItem('activeAccountId', activeAccountId)
         store.dispatch(setActiveAccountId({accountId: activeAccountId}))
         store.dispatch(getExpenseCategories({ id: activeAccountId }));
         store.dispatch(getIncomeCategories({ id: activeAccountId }));
         store.dispatch(getExpenses({ id: activeAccountId }));
         store.dispatch(getIncomes({ id: activeAccountId }));
-        history.push('/home');
+        history.push('/dashboard');
       } else {
         history.push('/accounts');
       }
       
     }).catch((error) => {
-      console.log('error', error);
+      if (error.response.status === 400) {
+        throw new Error(error.response.data);
+      } else {
+        console.log('error', error);
+      }
     });
   }
 

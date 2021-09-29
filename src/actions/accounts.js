@@ -38,7 +38,11 @@ export const getAccounts = () => {
                 accounts
             });
         }).catch((error) => {
-            console.log('error', error);
+            if (error.response.status == 401) {
+                localStorage.clear();
+                history.go('/login');
+            }
+            else console.log('error', error);
         });
     };
 };

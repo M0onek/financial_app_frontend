@@ -1,12 +1,9 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import IncomeForm from './IncomeForm';
 import { editIncome, removeIncome } from '../../actions/incomes';
 
 const EditIncomePage = (props) => {
-    if (props.income === undefined) return <Redirect to="/dashboard"/>
-
     return (
         <div>
             <div className='summary'>

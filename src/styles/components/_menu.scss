@@ -161,6 +161,8 @@
     visibility: visible;
     opacity: 1;
     transition: opacity $anim-time, visibility $anim-time;
+    align-self: end;
+    padding-bottom: 1px;
 
     .menu--collapsed & {
         visibility: hidden;

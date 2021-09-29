@@ -1,9 +1,12 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
 import { editExpense, removeExpense } from '../../actions/expenses';
 
 const EditExpensePage = (props) => {
+    if (props.expense === undefined) return <Redirect to="/dashboard"/>
+
     return (
         <div>
             <div className='summary'>
@@ -16,11 +19,11 @@ const EditExpensePage = (props) => {
                 expense={props.expense}
                 onSubmit={(expense) => {
                     props.dispatch(editExpense({ id: props.expense.accountId }, { id: props.expense.expenseId }, expense));
-                    props.history.push(`/home`);
+                    props.history.push(`/dashboard`);
                 }} />
                 <button className='button button--secondary' onClick={() => {
                     props.dispatch(removeExpense({ id: props.expense.accountId }, { id: props.expense.expenseId }))
-                    props.history.push(`/home`);
+                    props.history.push(`/dashboard`);
                 }}>Remove Expense</button>
             </div>
         </div>

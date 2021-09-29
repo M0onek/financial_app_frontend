@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import auth from '../../services/auth'
 
 const validEmailRegex = 
   RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -19,6 +20,7 @@ class LoginForm extends React.Component {
         this.state = {
             email: '',
             password: '',
+            error: '',
             errors: {
                 email: '',
                 password: ''
@@ -45,10 +47,13 @@ class LoginForm extends React.Component {
         if (!this.state.email || !this.state.password || !validateForm(this.state.errors)) {
             this.setState(() => ({ error: 'Please provide correct email and password.' }))
         } else {
-            this.setState(() => ({ error: '' }));
-            this.props.onSubmit({
+            auth.login({
                 email: this.state.email,
                 password: this.state.password
+            }).then(() => {
+                this.setState(() => ({ error: '' }));
+            }).catch((error) => {
+                this.setState(() => ({ error: error.message }));
             })
         }
     })

@@ -8,25 +8,14 @@ const EditCategoriesPage = (props) => {
     return (
         <div>
             <CategoriesForm
-            category={props.expenseCategories.find((category) => {
-                category.categoryId === props.activeAccountId
-            })}
-            onSubmit={(category) => {
-                if (props.mode === "income") { 
-                    props.dispatch(editIncomeCategory({ id: props.activeAccountId }, category));
-                    props.history.push(`/income_categories`);
-                }
-                else if (props.mode === "expense") {
-                    props.dispatch(editExpenseCategory({ id: props.activeAccountId }, category));
-                    props.history.push(`/expense_categories`);
-                }
-                else {
-                    console.error(`[EditCategoriesPage] Unknown mode: '${props.mode}'`)
-                }
+            category={props.category}
+            onSubmit={(name) => {
+                props.dispatch((props.mode === "income" ? editIncomeCategory : editExpenseCategory)({ id: props.activeAccountId }, { id: props.category.categoryId}, { name }));
+                props.history.push(`/categories`);
             }} />
             <button onClick={() => {
-                props.dispatch(removeExpenseCategory({ id: props.activeAccountId }))
-                props.history.push(`/expense_categories`);
+                props.dispatch((props.mode === "income" ? removeIncomeCategory : removeExpenseCategory)({ id: props.activeAccountId }))
+                props.history.push(`/categories`);
             }}>Delete</button>
         </div>
     );
@@ -34,12 +23,11 @@ const EditCategoriesPage = (props) => {
 
 const mapStateToProps = (state, props) => {
     return {
-        categories: state.mode == "income" ? state.incomeCategories : state.expenseCategories,
-        // .find((category)  => {
-        //     category.categoryId === props.match.params.categoryId
-        // }),
+        mode: props.match.params.mode,
+        category: (props.match.params.mode === "income" ? state.incomeCategories : state.expenseCategories).find((category) => {
+            return category.categoryId === props.match.params.categoryId
+        }),
         activeAccountId: state.activeAccount.activeAccountId,
-        mode: state.mode
     };
 };
 

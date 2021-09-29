@@ -14,7 +14,7 @@ const AddExpensePage = (props) => (
             <ExpenseForm
                 onSubmit={(expense) => {
                     props.dispatch(addExpense({id: props.activeAccountId }, expense));
-                    props.history.push(`/home`);
+                    props.history.push(`/dashboard`);
                 }}
             />
         </div>

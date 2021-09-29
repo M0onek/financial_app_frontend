@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import categories from '../../selectors/categories';
 
 class CategoriesForm extends React.Component {
     constructor(props) {
@@ -22,18 +23,23 @@ class CategoriesForm extends React.Component {
         if (!name) {
             this.setState(() => ({ error: 'Please provide name for your category.' }))
         } else {
-            this.setState(() => ({ error: '', name: '' }))
-            this.props.onSubmit({ name })
+            for (const category of this.props.categories) {
+                if (category.name === name) {
+                    this.setState(() => ({ error: 'Category already exists.' }))
+                    return
+                }
+            }
 
-            // TODO: category already exists
+            this.setState(() => ({ error: '', name: '' }))
+            this.props.onSubmit({name})
         }
-    });
+    })
 
     render() {
         return (
-            <div className='content-container'>                
+            <div className='content-container margin-top'>                
                 <form className='form' onSubmit={this.onSubmit}>
-                {this.state.error && <p className='form__error'>{this.state.error}</p>}
+                    {this.state.error && <p className='form__error'>{this.state.error}</p>}
                     <input
                         className='text-input'
                         type='text'
@@ -42,11 +48,19 @@ class CategoriesForm extends React.Component {
                         onChange={this.onNameChange}
                         autoFocus
                     />
-                    <button className='button'>Save category</button>
+                    <button className='button'>Add category</button>
                 </form>
             </div>
         )
     }
 }
 
-export default CategoriesForm;
+const mapStateToProps = (state, props) => {
+    return {
+        categories: props.mode === "income"
+            ? categories(state.incomeCategories, state.activeAccount)
+            : categories(state.expenseCategories, state.activeAccount),
+    }
+}
+
+export default connect(mapStateToProps)(CategoriesForm);
