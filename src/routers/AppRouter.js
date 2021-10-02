@@ -14,6 +14,7 @@ import ProtectedRoute from './ProtectedRoute';
 import RemoveProfilePage from '../components/profile/RemoveProfilePage';
 import createHistory from 'history/createBrowserHistory';
 import DashbordPage from '../components/DashboardPage';
+import ChartsPage from '../components/charts/ChartsPage';
 
 export const history = createHistory();
 
@@ -21,32 +22,22 @@ const AppRouter = () => (
     <Router history={history}>
         <div>
             <Switch>
+                <Route path='/' exact><Redirect to='/dashboard' /></Route>
                 <Route path='/login' component={LoginPage} />
                 <Route path='/signup' component={SignupPage} />
-                <Route path='/' exact><Redirect to='/dashboard' /></Route>
 
-                <ProtectedRoute path='/dashboard' component={DashbordPage} exact/>
-
-                <ProtectedRoute path='/accounts' component={AccountPage} exact />
-                {/* <ProtectedRoute path='/accounts/:accountId/edit' component={EditAccountPage} /> */}
-
-                <ProtectedRoute path='/categories' component={CategoriesPage} exact />
-
-                {/* <ProtectedRoute path='/income_categories' component={IncomeCategoriesPage} exact /> */}
-                {/* <Route path='/income_categories/create' component={EditIncomeCategoriesPage} /> */}
-                <ProtectedRoute path='/categories/:mode/:categoryId/edit' component={EditCategoriesPage} />
-
-                {/* <ProtectedRoute path='/expense_categories' component={ExpenseCategoriesPage} exact /> */}
-                {/* <Route path='/expense_categories/create' component={EditExpenseCategoriesPage} /> */}
-                {/* <ProtectedRoute path='/expense_categories/:categoryId/edit' component={EditCategoriesPage} /> */}
-
-                {/* <ProtectedRoute path='/dashboard/incomes' component={IncomeDashbordPage} exact /> */}
+                <ProtectedRoute path='/dashboard' component={DashbordPage} exact />
                 <ProtectedRoute path='/dashboard/incomes/create' component={AddIncomePage} />
                 <ProtectedRoute path='/dashboard/incomes/:incomeId/edit' component={EditIncomePage} />
-
-                {/* <ProtectedRoute path='/dashboard/expenses' component={ExpenseDashbordPage} exact/> */}
                 <ProtectedRoute path='/dashboard/expenses/create' component={AddExpensePage} />
                 <ProtectedRoute path='/dashboard/expenses/:expenseId/edit' component={EditExpensePage} />
+
+                <ProtectedRoute path='/charts' component={ChartsPage} exact />
+
+                <ProtectedRoute path='/accounts' component={AccountPage} exact />
+
+                <ProtectedRoute path='/categories' component={CategoriesPage} exact />
+                <ProtectedRoute path='/categories/:mode/:categoryId/edit' component={EditCategoriesPage} />
 
                 <ProtectedRoute path='/profile' component={RemoveProfilePage} />
                 <Route component={NotFoundPage} />

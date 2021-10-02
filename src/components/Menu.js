@@ -56,15 +56,21 @@ class Menu extends React.Component {
                         </NavLink>
                     </li>
                     <li className="menu__list-item">
-                        <NavLink className="menu__link" to="/accounts" activeClassName="active" onClick={this.onNavClick}>
-                            <span className="material-icons menu__icon">manage_accounts</span>
-                            <span className="menu__text">Accounts</span>
+                        <NavLink className="menu__link" to="/charts" activeClassName="active" onClick={this.onNavClick}>
+                            <span className="material-icons menu__icon">bar_chart</span>
+                            <span className="menu__text">Charts</span>
                         </NavLink>
                     </li>
                     <li className="menu__list-item">
                         <NavLink className="menu__link" to="/categories" activeClassName="active" onClick={this.onNavClick}>
                             <span className="material-icons menu__icon">bookmark_border</span>
                             <span className="menu__text">Categories</span>
+                        </NavLink>
+                    </li>
+                    <li className="menu__list-item">
+                        <NavLink className="menu__link" to="/accounts" activeClassName="active" onClick={this.onNavClick}>
+                            <span className="material-icons menu__icon">manage_accounts</span>
+                            <span className="menu__text">Accounts</span>
                         </NavLink>
                     </li>
                     <li className="menu__list-item">

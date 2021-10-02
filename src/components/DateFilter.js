@@ -1,12 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
-import { sortByDate, sortByAmount, setStartDate, setEndDate } from '../../actions/filters';
+import { sortByDate, sortByAmount, setStartDate ,setEndDate } from '../actions/filters';
 
-class IncomeListFilters extends React.Component {
-    state = {
-        calendarFocused: null,
-    };
+class DateFilter extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            calendarFocused: null,
+        };
+    }
 
     onDatesChange = ({ startDate, endDate }) => {
         this.props.dispatch(setStartDate(startDate));
@@ -29,15 +32,18 @@ class IncomeListFilters extends React.Component {
         return (
             <div className='content-container'>
                 <div className='input-group'>
-                    <div className='input-group__item'>
-                        <select
-                        className='select'
-                        value={this.props.filters.sortBy}
-                        onChange={this.onChangeSortBy}>
-                        <option value='date'>Date</option>
-                        <option value='amount'>Amount</option>
-                        </select>
-                    </div>
+                    { this.props.showSortBy === true
+                        ? <div className='input-group__item'>
+                            <select
+                            className='select'
+                            value={this.props.filters.sortBy}
+                            onChange={this.onChangeSortBy}>
+                            <option value='date'>Date</option>
+                            <option value='amount'>Amount</option>
+                            </select>
+                          </div>
+                        : <div></div>
+                    }
                     <div className='input-group__item'>
                         <DateRangePicker
                         startDateId='incSD'
@@ -65,4 +71,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(IncomeListFilters);
+export default connect(mapStateToProps)(DateFilter);
