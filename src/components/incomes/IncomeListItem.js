@@ -7,7 +7,7 @@ import moment from 'moment';
 const IncomeListItem = ({ incomeId, amount, comment, date, category }, props) => (
     <Link className='list-item' to={`/dashboard/incomes/${incomeId}/edit`}>
         <div>
-            <h3 className='list-item__title'>{category.name}</h3>
+            <h3 className='list-item__title'>{category ? category.name : ''}</h3>
             <span className='list-item__sub-title'>{moment(date).format('MMMM Do, YYYY')}</span>
         </div>
         <h3 className='list-item__data'>{numeral(amount).format('$0,0.00')}</h3>

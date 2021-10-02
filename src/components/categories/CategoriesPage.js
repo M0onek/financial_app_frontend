@@ -2,8 +2,6 @@ import React from 'react';
 import CategoriesForm from './CategoriesForm';
 import CategoriesList from './CategoriesList';
 import { addIncomeCategory } from '../../actions/incomeCategories';
-import ExpenseCategoriesForm from '../expenseCategories/ExpenseCategoriesForm';
-import ExpenseCategoriesList from '../expenseCategories/ExpenseCategoriesList';
 import { addExpenseCategory } from '../../actions/expenseCategories';
 import { connect } from 'react-redux';
 

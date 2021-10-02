@@ -1,0 +1,106 @@
+.select-account__root {
+    width: 100%;
+    position: relative;
+    user-select: none;
+    z-index: 1;
+}
+
+.select-account {
+    height: 50px;
+    font-size: $font-size-large;
+    padding: $s-size;
+    border-radius: $radius $radius 0 0;
+    border: 1px solid $light-grey;
+    border-bottom: none;
+    width: 100%;
+    cursor: pointer;
+    background: $off-white;
+    color: $dark-blue;
+    font-weight: bold;
+    display: flex;
+
+    transition-property: background, color;
+    transition-duration: $anim-time;
+
+    .select-account--collapsed & {
+        background: transparent;
+        color: white;
+        border-radius: $radius;
+        border: none;
+
+        &:hover {
+            outline: 1px solid $light-grey;
+            outline-offset: -1px;
+        }
+    }
+
+    .menu--collapsed & {
+        display: none;
+    }
+}
+
+.select-account__text {
+    flex-grow: 1;
+}
+
+.select-account__icon {
+    align-self: center;
+}
+
+.select-account__options {
+    position: absolute;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    min-width: 10rem;
+}
+
+.select-account__options-content {
+    background: $off-white;
+    border: 1px solid $light-grey;
+    border-top: none;
+    box-shadow: 0 0 5px $light-grey;
+    border-radius: 0 0 $radius $radius;
+    min-width: 10rem;
+    height: 100%;
+    transform: translate(0, 0);
+    transition: transform $anim-time, height $anim-time;
+
+    .menu--collapsed & {
+        top: 0.1rem;
+        border: 1px solid $light-grey;
+        border-radius: $radius;
+    }
+
+    .menu--collapsed .select-account--collapsed & {
+        height: 0;
+        transform: translate(-105%, 0);
+    }
+
+    .select-account--collapsed & {
+        height: 0;
+        transform: translate(0, -105%);
+    }
+
+    option {
+        font-size: $font-size-large;
+        padding: 0.2rem 0.75rem;
+
+        &:hover {
+            background: $light-grey;
+        }
+
+        &.select-account__active {
+            font-weight: bold;
+        }
+    }
+}
+
+.select-account__overlay {
+    position: fixed;
+    inset: 0;
+
+    .select-account--collapsed + & {
+        display: none;
+    }
+}

@@ -8,7 +8,6 @@ class Menu extends React.Component {
     constructor(props) {
         super(props)
         const collapsed = this.isSmallScreen() ? true : localStorage.getItem("menuCollapsed") === "true"
-        // TODO: something is wrong while refreshing
 
         this.state = {
             menuCollapsed: collapsed,
@@ -19,28 +18,24 @@ class Menu extends React.Component {
 
     onNavClick = () => {
         if (this.isSmallScreen()) {
-            this.setState(() => {
-                this.menuCollapsed = true
+            this.setState({
+                menuCollapsed: true
             })
         }
     }
 
     onMenuClick = () => {
-        const collapsed = !this.menuCollapsed
+        const collapsed = !this.state.menuCollapsed
         if (!this.isSmallScreen()) localStorage.setItem("menuCollapsed", collapsed ? "true" : "false")
 
-        this.setState(() => {
-            this.menuCollapsed = collapsed
+        this.setState({
+            menuCollapsed: collapsed
         })
-    }
-
-    onSelectorClick = () => {
-        // document.getElementById('account-selector__select').click();
     }
 
     render() {
         return (
-            <nav className={this.menuCollapsed ? 'menu menu--collapsed' : 'menu'}>
+            <nav className={this.state.menuCollapsed ? 'menu menu--collapsed' : 'menu'}>
                 <div className='menu__header'>
                     <div className="menu__header-item">
                         <span className="material-icons menu__icon" onClick={this.onMenuClick}>menu</span>
@@ -48,10 +43,7 @@ class Menu extends React.Component {
                             <h1>Financial_app</h1>
                         </NavLink>
                     </div>
-                    <div className="menu__header-item">
-                        <span className="material-icons menu__icon" onClick={this.onSelectorClick}>person_outline</span>
-                        <AccountSelector ref={this.selectorRef}/>
-                    </div>
+                    <AccountSelector onChanged={this.onNavClick}/>
                 </div>
 
                 <ul className="menu__list">
