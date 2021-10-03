@@ -25,7 +25,7 @@ class Auth {
       history.push('/dashboard')
     }).catch((error) => {
       if (error.response.status === 400) {
-        throw new Error("Email address is already in use.");
+        throw new Error("Podany adres e-mail został już użyty.");
       } else {
         console.log('error', error);
       }
