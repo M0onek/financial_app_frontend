@@ -32,20 +32,20 @@ class LoginForm extends React.Component {
         const email = event.target.value;
         this.setState(() => ({ email }));
         let errors = this.state.errors;
-        errors.email = validEmailRegex.test(event.target.value) ? '' : 'Email is not valid!';
+        errors.email = validEmailRegex.test(event.target.value) ? '' : 'Niepoprawny adres e-mail.';
     };
 
     onPasswordChange = (event) => {
         const password = event.target.value;
         this.setState(() => ({ password }));
         let errors = this.state.errors;
-        errors.password = event.target.value.length < 8 ? 'Password length: 8' : '';
+        errors.password = event.target.value.length < 8 ? 'Hasło musi mieć minimum 8 znaków' : '';
     };
 
     onSubmit = ((event) => {
         event.preventDefault();
         if (!this.state.email || !this.state.password || !validateForm(this.state.errors)) {
-            this.setState(() => ({ error: 'Please provide correct email and password.' }))
+            this.setState(() => ({ error: 'Wprowadź poprawny adres e-mail i hasło.' }))
         } else {
             auth.login({
                 email: this.state.email,
@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
                     <input className='input'
                         type='email'
                         name='email'
-                        placeholder='email'
+                        placeholder='Adres e-mail'
                         value={this.state.email}
                         onChange={this.onEmailChange}
                         autoFocus
@@ -76,13 +76,13 @@ class LoginForm extends React.Component {
                     <input className='input'
                         type='password'
                         name='password'
-                        placeholder='password'
+                        placeholder='Hasło'
                         value={this.state.password}
                         onChange={this.onPasswordChange}
                     />
                     {errors.password.length > 0 && <div className="form__error">{errors.password}</div>}
-                    <button className='button'>Login</button>
-                    <div><a className='anchor' href="/signup">Create an account.</a></div>
+                    <button className='button' style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Zaloguj</button>
+                    <div><a className='anchor' href="/signup">Utwórz konto.</a></div>
                 </form>
             </div>
         )

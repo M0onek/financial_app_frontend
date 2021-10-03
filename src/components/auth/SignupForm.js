@@ -36,20 +36,20 @@ class SignupForm extends React.Component {
         const email = event.target.value;
         this.setState(() => ({ email }));
         let errors = this.state.errors;
-        errors.email = validEmailRegex.test(event.target.value) ? '' : 'Email is not valid';
+        errors.email = validEmailRegex.test(event.target.value) ? '' : 'Niepoprawny adres e-mail.';
     };
 
     onPasswordChange = (event) => {
         const password = event.target.value;
         this.setState(() => ({ password }));
         let errors = this.state.errors;
-        errors.password = event.target.value.length < 8 ? 'Password must be 8' : '';
+        errors.password = event.target.value.length < 8 ? 'Hasło musi mieć minimum 8 znaków' : '';
     };
 
     onSubmit = ((event) => {
         event.preventDefault();
         if (!this.state.email || !this.state.password || !this.state.name || !validateForm(this.state.errors)) {
-            this.setState(() => ({ error: 'Please fill in every field correctly!' }))
+            this.setState(() => ({ error: 'Wypełnij poprawnie wszystkie pola.' }))
         } else {
             auth.signup({
                 name: this.state.name,
@@ -71,27 +71,27 @@ class SignupForm extends React.Component {
                 <form onSubmit={this.onSubmit}>
                     <input className='input'
                         type='text'
-                        placeholder='name'
+                        placeholder='Nazwa konta'
                         value={this.state.name}
                         onChange={this.onNameChange}
                         autoFocus
                     />
                     <input className='input'
                         type='email'
-                        placeholder='email'
+                        placeholder='Adres e-mail'
                         value={this.state.email}
                         onChange={this.onEmailChange}
                     />
                     {errors.email.length > 0 && <span className="form__error">{errors.email}</span>}
                     <input className='input'
                         type='password'
-                        placeholder='password'
+                        placeholder='Hasło'
                         value={this.state.password}
                         onChange={this.onPasswordChange}
                     />
                     {errors.password.length > 0 && <span className="form__error">{errors.password}</span>}
-                    <button className='button'>Sign Up</button>
-                    <div><a className='anchor' href="/login">Login.</a></div>
+                    <button className='button' style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Utwórz konto</button>
+                    <div><a className='anchor' href="/login">Wróć do panelu logowania.</a></div>
                     
                 </form>
             </div>
