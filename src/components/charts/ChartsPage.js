@@ -7,7 +7,7 @@ const ChartsPage = () => (
     <div>
         <div className='summary'>
             <div className='content-container'>
-                <h1 className='summary__title'>Incomes / Expenses</h1>
+                <h1 className='summary__title'>Przychody / Wydatki</h1>
             </div>       
         </div>
         <DateFilter />
@@ -17,17 +17,16 @@ const ChartsPage = () => (
             <div>
                 <div className='summary'>
                     <div className='content-container'>
-                        <h1 className='summary__title'>Income Categories</h1>            
+                        <h1 className='summary__title'>Kategorie przychodów</h1>            
                     </div>       
                 </div>
                 <PieChart mode="income"/>
-                {/* TODO: filtering */}
             </div>
 
             <div>
                 <div className='summary'>
                     <div className='content-container'>
-                        <h1 className='summary__title'>Expense Categories</h1>            
+                        <h1 className='summary__title'>Kategorie wydatków</h1>            
                     </div>       
                 </div>
                 <PieChart mode="expense"/>

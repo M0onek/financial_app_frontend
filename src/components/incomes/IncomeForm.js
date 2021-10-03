@@ -79,7 +79,7 @@ class IncomeForm extends React.Component {
                     <input
                         className='text-input'
                         type='text'
-                        placeholder='amount'
+                        placeholder='Wartość'
                         value={this.state.amount}
                         onChange={this.onAmountChange}
                         autoFocus
@@ -99,24 +99,24 @@ class IncomeForm extends React.Component {
                             className='select flex__grow radius-left'
                             value={this.state.categoryId} 
                             onChange={this.onIncomeCategoryChange}>
-                            <option disabled value='default'>Choose category</option>
+                            <option disabled value='default'>Wybierz kategorie</option>
                             {this.categoryOptions(this.props.incomeCategories)}
                         </select>
                         <button
                             className="button button--no-margin radius-right"
                             onClick={this.onAddCategory}>
-                            New
+                            Nowy
                         </button>
                     </div>
                     <textarea
                         className='textarea'
-                        placeholder='Add a comment (optional)'
+                        placeholder='Dodaj komentarz (opcionalne)'
                         value={this.state.comment}
                         onChange={this.onCommentChange}
                     >
                     </textarea>
                     <div>
-                        <button className='button'>Save Income</button>
+                        <button className='button'>Zapisz</button>
                     </div>
                 </form>
         )

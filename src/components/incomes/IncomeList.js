@@ -7,13 +7,13 @@ import selectIncomes from '../../selectors/expenses';
 const IncomeList = (props) => (
     <div className='content-container'>
         <div className='list-header'>
-            <div>Income</div>
-            <div>Amount</div>
+            <div>Przychody</div>
+            <div>Wartość</div>
         </div>
         {
             props.incomes.length === 0 ? (
                 <div className='list-item list-item--message'>
-                    <span>No incomes</span>
+                    <span>Brak przychodów</span>
                 </div>
             ) : (
                 props.incomes.map((income) => {

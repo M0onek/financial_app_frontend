@@ -35,12 +35,15 @@ class AreaChart extends React.Component {
     }
 
     getChartData = () => {
-        const data = [['Day', 'Incomes', 'Expenses']]
+        const data = [['Dzień', 'Przychody', 'Wydatki']]
         
         let start = this.props.filters.startDate
         let end = this.props.filters.endDate
+        let lastDate = moment()
 
         if (end === null) end = moment()
+        else end = moment(end)
+
         if (start === null) {
             let last = moment()
             
@@ -53,6 +56,12 @@ class AreaChart extends React.Component {
             })
 
             start = last
+        } else start = moment(start)
+
+        if (moment(start).isAfter(end)) {
+            const tmp = moment(start)
+            start = end
+            end = tmp
         }
 
         for (let day = moment(start); day.isSameOrBefore(end, 'day'); day.add(1, 'days')) {
@@ -64,6 +73,7 @@ class AreaChart extends React.Component {
 
             for (let i = 1; i < data.length; i++) {
                 if (moment(data[i][0]).isSame(date)) {
+                    if (date.isAfter(lastDate, 'day')) lastDate = date
                     data[i][1] += parseFloat(value.amount)
                 }
             }
@@ -74,6 +84,7 @@ class AreaChart extends React.Component {
 
             for (let i = 1; i < data.length; i++) {
                 if (moment(data[i][0]).isSame(date)) {
+                    if (date.isAfter(lastDate, 'day')) lastDate = date
                     data[i][2] += parseFloat(value.amount)
                 }
             }
@@ -81,11 +92,12 @@ class AreaChart extends React.Component {
 
         let incomesSum = 0
         let expensesSum = 0
+        const badDate = moment(start).isAfter(lastDate, 'day')
 
         for (let i = 1; i < data.length; i++) {
             const date = moment(data[i][0])
-            data[i][0] = date.format('D/MM')
-            if (date.isAfter(moment(), 'day')) {
+            data[i][0] = date.format('D.MM')
+            if (date.isAfter(lastDate, 'day') && !badDate) {
                 data[i][1] = undefined
                 data[i][2] = undefined
             } else {
@@ -136,8 +148,6 @@ const mapStateToProps = (state, props) => {
     return {
         incomes: selectFiltered(state.incomes, state.filters, state.activeAccount),
         expenses: selectFiltered(state.expenses, state.filters, state.activeAccount),
-        incomeCategories: state.incomeCategories,
-        expenseCategories: state.expenseCategories,
         filters: state.filters,
     }
 }

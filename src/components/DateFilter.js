@@ -38,8 +38,8 @@ class DateFilter extends React.Component {
                             className='select'
                             value={this.props.filters.sortBy}
                             onChange={this.onChangeSortBy}>
-                            <option value='date'>Date</option>
-                            <option value='amount'>Amount</option>
+                            <option value='date'>Sortuj po dacie</option>
+                            <option value='amount'>Sortuj po wartości</option>
                             </select>
                           </div>
                         : <div></div>
@@ -48,6 +48,8 @@ class DateFilter extends React.Component {
                         <DateRangePicker
                         startDateId='incSD'
                         endDateId='incED'
+                        startDatePlaceholderText='Początek'
+                        endDatePlaceholderText='Koniec'
                         startDate={this.props.filters.startDate}
                         endDate={this.props.filters.endDate}
                         onDatesChange={this.onDatesChange}

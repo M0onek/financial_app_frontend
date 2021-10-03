@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import React from 'react';
 import { connect } from 'react-redux';
 import { editExpenseCategory, removeExpenseCategory } from '../../actions/expenseCategories';
@@ -22,7 +23,7 @@ class CategoriesListItem extends React.Component {
                 categoryAmount += amount
             }
         });
-        return categoryAmount
+        return numeral(categoryAmount).format('0,0.00')
     }
 
     isNameValid = () => {
@@ -104,7 +105,7 @@ class CategoriesListItem extends React.Component {
                         ? <input type="text" className="list-item__input" value={this.state.newName} onChange={this.onNameChange} autoFocus/>
                         : <h3 className='list-item__title'>{this.state.name}</h3>
                     }
-                    <h3 className='list-item__data'>Total: {this.getCategoryAmount(this.props.values)}</h3>
+                    <h3 className='list-item__data'>Łącznie: {this.getCategoryAmount(this.props.values)} zł</h3>
                     { this.state.edit
                         ? this.renderEditButtons()
                         : this.renderNormalButtons()

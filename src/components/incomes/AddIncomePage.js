@@ -7,7 +7,7 @@ const AddTransactionPage = (props) => (
     <div>
         <div className='summary'>
             <div className='content-container'>
-                <h1 className='summary__title'>Add Income</h1>
+                <h1 className='summary__title'>Dodaj przychód</h1>
             </div>
         </div>
         <div className='content-container'>

@@ -40,7 +40,7 @@ class Menu extends React.Component {
                     <div className="menu__header-item">
                         <span className="material-icons menu__icon" onClick={this.onMenuClick}>menu</span>
                         <NavLink className="menu__title menu__text" to="/dashboard" activeClassName="active">
-                            <h1>Financial_app</h1>
+                            <h1>Finansify</h1>
                         </NavLink>
                     </div>
                     <AccountSelector onChanged={this.onNavClick}/>
@@ -52,31 +52,31 @@ class Menu extends React.Component {
                     <li className="menu__list-item">
                         <NavLink className="menu__link" to="/dashboard" activeClassName="active" onClick={this.onNavClick}>
                             <span className="material-icons menu__icon">dashboard</span>
-                            <span className="menu__text">Dashboard</span>
+                            <span className="menu__text">Panel</span>
                         </NavLink>
                     </li>
                     <li className="menu__list-item">
                         <NavLink className="menu__link" to="/charts" activeClassName="active" onClick={this.onNavClick}>
                             <span className="material-icons menu__icon">bar_chart</span>
-                            <span className="menu__text">Charts</span>
+                            <span className="menu__text">Wykresy</span>
                         </NavLink>
                     </li>
                     <li className="menu__list-item">
                         <NavLink className="menu__link" to="/categories" activeClassName="active" onClick={this.onNavClick}>
                             <span className="material-icons menu__icon">bookmark_border</span>
-                            <span className="menu__text">Categories</span>
+                            <span className="menu__text">Kategorie</span>
                         </NavLink>
                     </li>
                     <li className="menu__list-item">
-                        <NavLink className="menu__link" to="/accounts" activeClassName="active" onClick={this.onNavClick}>
-                            <span className="material-icons menu__icon">manage_accounts</span>
-                            <span className="menu__text">Accounts</span>
+                        <NavLink className="menu__link" to="/profiles" activeClassName="active" onClick={this.onNavClick}>
+                            <span className="material-icons menu__icon">account_balance_wallet</span>
+                            <span className="menu__text">Portfele</span>
                         </NavLink>
                     </li>
                     <li className="menu__list-item">
-                        <NavLink className="menu__link" to="/profile" activeClassName="active" onClick={this.onNavClick}>
+                        <NavLink className="menu__link" to="/settings" activeClassName="active" onClick={this.onNavClick}>
                             <span className="material-icons menu__icon">settings</span>
-                            <span className="menu__text">Settings</span>
+                            <span className="menu__text">Ustawienia</span>
                         </NavLink>
                     </li>
 
@@ -85,7 +85,7 @@ class Menu extends React.Component {
                     <li className="menu__list-item">
                         <a href="#" className="menu__link" onClick={auth.logout}>
                             <span className="material-icons menu__icon">logout</span>
-                            <span className="menu__text">Logout</span>
+                            <span className="menu__text">Wyloguj</span>
                         </a>
                     </li>
                 </ul>

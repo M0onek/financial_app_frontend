@@ -74,7 +74,7 @@ class ExpenseForm extends React.Component {
                     <input
                         className='text-input'
                         type='text'
-                        placeholder='amount'
+                        placeholder='Wartość'
                         value={this.state.amount}
                         onChange={this.onAmountChange}
                         autoFocus
@@ -91,18 +91,18 @@ class ExpenseForm extends React.Component {
                         className='select'
                         value={this.state.categoryId}
                         onChange={this.onExpenseCategoryChange}>
-                        <option disabled value='default'>Choose category</option>
+                        <option disabled value='default'>Wybierz kategorie</option>
                         {this.categoryOptions(this.props.expenseCategories)}
                     </select>
                     <textarea
                         className='textarea'
-                        placeholder='Add a comment (optional)'
+                        placeholder='Dodaj komentarz (opcionalne)'
                         value={this.state.comment}
                         onChange={this.onCommentChange}
                     >
                     </textarea>
                     <div>
-                        <button className='button'>Save Expense</button>
+                        <button className='button'>Zapisz</button>
                     </div>
                 </form>
         )

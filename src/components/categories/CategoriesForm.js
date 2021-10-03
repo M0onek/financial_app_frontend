@@ -21,11 +21,11 @@ class CategoriesForm extends React.Component {
         const name = this.state.name
 
         if (!name) {
-            this.setState(() => ({ error: 'Please provide name for your category.' }))
+            this.setState(() => ({ error: 'Wprowadź nazwę kategorii.' }))
         } else {
             for (const category of this.props.categories) {
                 if (category.name === name) {
-                    this.setState(() => ({ error: 'Category already exists.' }))
+                    this.setState(() => ({ error: 'Kategoria o podanej nazwie już istnieje.' }))
                     return
                 }
             }
@@ -43,12 +43,12 @@ class CategoriesForm extends React.Component {
                     <input
                         className='text-input'
                         type='text'
-                        placeholder='name'
+                        placeholder='Dodaj nową kategorię'
                         value={this.state.name}
                         onChange={this.onNameChange}
                         autoFocus
                     />
-                    <button className='button'>Add category</button>
+                    <button className='button'>Dodaj kategorię</button>
                 </form>
             </div>
         )

@@ -5,15 +5,24 @@ import numeral from 'numeral';
 import selectExpenses from '../../selectors/expenses';
 import selectExpensesTotal from '../../selectors/expenses-total';
 
+const getWord = (count) => {
+    const words = ['wydatek', 'wydatki', 'wydatków']
+    const last = count % 10
+
+    if (count === 1) return words[0]
+    if (count > 10 && count < 20) return words[2]
+    if (last >= 2 && last <= 4) return words[1]
+    return words[2]
+}
+
 const ExpensesSummary = ({ expenseCount, expensesTotal }, props) => {
-    const expenseWord = expenseCount === 1 ? 'expense' : 'expenses' ;
-    const formattedExpensesTotal = numeral(expensesTotal).format('$0,0.00');
+    const formattedExpensesTotal = numeral(expensesTotal).format('0,0.00');
     return (
         <div className='summary'>
             <div className='content-container'>
-                <h1 className='summary__title'>Viewing <span>{expenseCount}</span> {expenseWord} totalling <span>{formattedExpensesTotal}</span></h1>
+                <h1 className='summary__title'>Wyświetlono <span>{expenseCount}</span> {getWord(expenseCount)} o&nbsp;łącznej wartości <span>{formattedExpensesTotal}&nbsp;zł</span></h1>
                 <div className='summary__actions'>
-                    <Link className='button' to={`/dashboard/expenses/create`}>Add Expense</Link>
+                    <Link className='button' to={`/dashboard/expenses/create`}>Dodaj wydatek</Link>
                 </div>
             </div>
         </div>

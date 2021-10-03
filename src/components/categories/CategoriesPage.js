@@ -11,7 +11,7 @@ const CategoriesPage = (props) => (
         <div>
             <div className='summary'>
                 <div className='content-container'>
-                    <h1 className='summary__title'>Income Categories List</h1>            
+                    <h1 className='summary__title'>Kategorie przychodów</h1>            
                 </div>       
             </div>
 
@@ -25,7 +25,7 @@ const CategoriesPage = (props) => (
         <div>
             <div className='summary'>
                 <div className='content-container'>
-                    <h1 className='summary__title'>Expense Categories List</h1>            
+                    <h1 className='summary__title'>Kategorie wydatków</h1>            
                 </div>       
             </div>
             

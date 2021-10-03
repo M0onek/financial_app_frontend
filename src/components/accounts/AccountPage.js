@@ -3,17 +3,13 @@ import AccountForm from './AccountForm';
 import AccountList from './AccountList';
 import { addAccount } from '../../actions/accounts';
 import { connect } from 'react-redux';
-import { setActiveAccountId } from '../../actions/activeAccount';
 
 const AccountPage = (props) => (
     <div>
         <AccountList />
         <AccountForm
             onSubmit={(account) => {
-                // let accounts = [];
-                // const user = JSON.parse(localStorage.getItem('user'));
                 props.dispatch(addAccount(account));
-                
             }}
         />
     </div>

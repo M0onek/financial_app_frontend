@@ -6,7 +6,6 @@ import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/auth/LoginPage';
 import AccountPage from '../components/accounts/AccountPage';
 import CategoriesPage from '../components/categories/CategoriesPage';
-import EditCategoriesPage from '../components/categories/EditCategoriesPage';
 import AddIncomePage from '../components/incomes/AddIncomePage';
 import EditIncomePage from '../components/incomes/EditIncomePage';
 import SignupPage from '../components/auth/SignupPage';
@@ -33,13 +32,9 @@ const AppRouter = () => (
                 <ProtectedRoute path='/dashboard/expenses/:expenseId/edit' component={EditExpensePage} />
 
                 <ProtectedRoute path='/charts' component={ChartsPage} exact />
-
-                <ProtectedRoute path='/accounts' component={AccountPage} exact />
-
                 <ProtectedRoute path='/categories' component={CategoriesPage} exact />
-                <ProtectedRoute path='/categories/:mode/:categoryId/edit' component={EditCategoriesPage} />
-
-                <ProtectedRoute path='/profile' component={RemoveProfilePage} />
+                <ProtectedRoute path='/settings' component={RemoveProfilePage} exact />
+                <ProtectedRoute path='/profiles' component={AccountPage} exact />
                 <Route component={NotFoundPage} />
             </Switch>
         </div>

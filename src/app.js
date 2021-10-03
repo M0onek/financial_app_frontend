@@ -11,6 +11,7 @@ import { getExpenseCategories } from './actions/expenseCategories';
 import { getIncomeCategories } from './actions/incomeCategories';
 import { getExpenses } from './actions/expenses';
 import { getIncomes } from './actions/incomes';
+import moment from 'moment';
 
 export const store = configureStore();
 
@@ -21,6 +22,7 @@ export const store = configureStore();
 //     console.log(state);
 // }})
 
+moment.locale('pl')
 
 const jsx = (
     <Provider store={store}>

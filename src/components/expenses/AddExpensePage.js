@@ -7,7 +7,7 @@ const AddExpensePage = (props) => (
     <div>
         <div className='summary'>
             <div className='content-container'>
-                <h1 className='summary__title'>Add Expense</h1>
+                <h1 className='summary__title'>Dodaj wydatek</h1>
             </div>
         </div>
         <div className='content-container'>

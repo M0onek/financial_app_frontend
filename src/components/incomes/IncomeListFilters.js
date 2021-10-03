@@ -34,8 +34,8 @@ class IncomeListFilters extends React.Component {
                         className='select'
                         value={this.props.filters.sortBy}
                         onChange={this.onChangeSortBy}>
-                        <option value='date'>Date</option>
-                        <option value='amount'>Amount</option>
+                        <option value='date'>Sortój po dacie</option>
+                        <option value='amount'>Sortów po wartości</option>
                         </select>
                     </div>
                     <div className='input-group__item'>
@@ -50,6 +50,7 @@ class IncomeListFilters extends React.Component {
                         showClearDates={true}
                         numberOfMonths={1}
                         isOutsideRange={() => false}
+                        displayFormat="DD/MM/YYYY"
                         />
                     </div>
                 </div>

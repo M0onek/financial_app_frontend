@@ -7,11 +7,11 @@ const AccountList = (props) => (
     <div>
         <div className='summary'>
             <div className='content-container'>
-                <h1 className='summary__title'>Accounts List</h1>        
+                <h1 className='summary__title'>Portfele</h1>        
             </div>    
         </div>
         <div className='content-container'>
-            <div className='list-header'>Name</div>
+            <div className='list-header'>Portfele</div>
             {props.accounts.map((account) => {
                 return <AccountListItem key={account.accountId} {...account} />
             })}

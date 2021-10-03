@@ -11,7 +11,7 @@ const EditExpensePage = (props) => {
         <div>
             <div className='summary'>
                 <div className='content-container'>
-                    <h1 className='summary__title'>Edit Expense</h1>
+                    <h1 className='summary__title'>Edytuj wydatek</h1>
                 </div>
             </div>
             <div className='content-container'>
@@ -24,7 +24,7 @@ const EditExpensePage = (props) => {
                 <button className='button button--secondary' onClick={() => {
                     props.dispatch(removeExpense({ id: props.expense.accountId }, { id: props.expense.expenseId }))
                     props.history.push(`/dashboard`);
-                }}>Remove Expense</button>
+                }}>Usuń</button>
             </div>
         </div>
     );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import categories from '../../selectors/categories';
 
 class AccountForm extends React.Component {
     constructor(props) {
@@ -21,11 +20,11 @@ class AccountForm extends React.Component {
         const name = this.state.name
 
         if (!name) {
-            this.setState(() => ({ error: 'Please provide name for your account.' }))
+            this.setState(() => ({ error: 'Wprowadź nazwę portfela.' }))
         } else {
             for (const account of this.props.accounts) {
                 if (account.name === name) {
-                    this.setState(() => ({ error: 'Account already exists.' }))
+                    this.setState(() => ({ error: 'Portfel o podanej nazwie już istnieje.' }))
                     return
                 }
             }
@@ -43,12 +42,12 @@ class AccountForm extends React.Component {
                     <input
                         className='text-input'
                         type='text'
-                        placeholder='name'
+                        placeholder='Utwórz nowy portfel'
                         value={this.state.name}
                         onChange={this.onNameChange}
                         autoFocus
                     />
-                    <button className='button'>Add account</button>
+                    <button className='button'>Utwórz portfel</button>
                 </form>
             </div>
         )
