@@ -12,7 +12,7 @@ export default (expenses, { sortBy, startDate, endDate }, { activeAccountId }) =
         if (sortBy === 'date') {
             return a.date < b.date ? 1 : -1;
         } else if (sortBy === 'amount') {
-            return a.amount < b.amount ? 1 : -1;
+            return parseFloat(a.amount) < parseFloat(b.amount) ? 1 : -1;
         }
     });
 };
