@@ -36,19 +36,18 @@ class AccountForm extends React.Component {
 
     render() {
         return (
-            <div className='content-container margin-top'>                
-                <form className='form' onSubmit={this.onSubmit}>
-                    {this.state.error && <p className='form__error'>{this.state.error}</p>}
+            <div className='content-container' style={{marginBottom: '0'}}>                
+                <form className='form row' onSubmit={this.onSubmit}>
                     <input
-                        className='text-input'
+                        className='text-input flex__grow radius-left'
                         type='text'
                         placeholder='Utwórz nowy portfel'
                         value={this.state.name}
                         onChange={this.onNameChange}
-                        autoFocus
                     />
-                    <button className='button'>Utwórz portfel</button>
+                    <button className='button radius-right'>Utwórz</button>
                 </form>
+                {this.state.error && <div className='form__error--compact'>{this.state.error}</div>}
             </div>
         )
     }

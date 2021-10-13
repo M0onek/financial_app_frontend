@@ -19,14 +19,13 @@ const IncomesSummary = ({ incomeCount, incomesTotal }, props) => {
     const incomeWord = incomeCount === 1 ? 'przychód' : 'przychodów' ;
     const formattedincomesTotal = numeral(incomesTotal).format('0,0.00');
     return (
-        <div className='summary'>
+        <div className='summary--top'>
             <div className='content-container'>
                 <h1 className='summary__title'>Wyświetlono <span>{incomeCount}</span> {getWord(incomeCount)} o&nbsp;łącznej wartości <span>{formattedincomesTotal}&nbsp;zł</span></h1>
                 <div className='summary__actions'>
                     <Link className='button' to={`/dashboard/incomes/create`}>Dodaj przychód</Link>
                 </div>
             </div>
-            
         </div>
     )
 }

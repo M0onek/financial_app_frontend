@@ -73,6 +73,15 @@
     }
 }
 
+.list-item--blue {
+    color: #BBDEFB; // 100
+    background: $blue;
+
+    &:hover,  &:disabled {
+        background: $light-blue;
+    }
+}
+
 .list-item--gray {
     color: #F5F5F5; // 100
     background: #9E9E9E; // 500

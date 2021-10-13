@@ -27,3 +27,11 @@
     text-align: left;
     padding-left: $s-size;
 }
+
+.form__error--compact {
+    color: $red;
+    line-height: 1.2;
+    text-align: left;
+    padding-left: $s-size;
+    margin-bottom: -1.2rem;
+}

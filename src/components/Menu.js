@@ -74,6 +74,12 @@ class Menu extends React.Component {
                         </NavLink>
                     </li>
                     <li className="menu__list-item">
+                        <NavLink className="menu__link" to="/raports" activeClassName="active" onClick={this.onNavClick}>
+                            <span className="material-icons menu__icon">assignment</span>
+                            <span className="menu__text">Raporty</span>
+                        </NavLink>
+                    </li>
+                    <li className="menu__list-item">
                         <NavLink className="menu__link" to="/settings" activeClassName="active" onClick={this.onNavClick}>
                             <span className="material-icons menu__icon">settings</span>
                             <span className="menu__text">Ustawienia</span>

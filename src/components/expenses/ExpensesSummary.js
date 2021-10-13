@@ -18,7 +18,7 @@ const getWord = (count) => {
 const ExpensesSummary = ({ expenseCount, expensesTotal }, props) => {
     const formattedExpensesTotal = numeral(expensesTotal).format('0,0.00');
     return (
-        <div className='summary'>
+        <div className='summary--top'>
             <div className='content-container'>
                 <h1 className='summary__title'>Wyświetlono <span>{expenseCount}</span> {getWord(expenseCount)} o&nbsp;łącznej wartości <span>{formattedExpensesTotal}&nbsp;zł</span></h1>
                 <div className='summary__actions'>

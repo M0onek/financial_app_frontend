@@ -8,9 +8,12 @@ const ChartsPage = () => (
         <div className='summary'>
             <div className='content-container'>
                 <h1 className='summary__title'>Przychody / Wydatki</h1>
-            </div>       
+            </div>
+            <div className="summary--center">
+                <DateFilter />
+            </div>
         </div>
-        <DateFilter />
+        
         <AreaChart mode="income" />
 
         <div className="flex-columns">

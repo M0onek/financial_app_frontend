@@ -14,6 +14,8 @@ import RemoveProfilePage from '../components/profile/RemoveProfilePage';
 import createHistory from 'history/createBrowserHistory';
 import DashbordPage from '../components/DashboardPage';
 import ChartsPage from '../components/charts/ChartsPage';
+import RaportPage from '../components/raports/RaportPage';
+import RaportPreview from '../components/raports/RaportPreview';
 
 export const history = createHistory();
 
@@ -33,8 +35,13 @@ const AppRouter = () => (
 
                 <ProtectedRoute path='/charts' component={ChartsPage} exact />
                 <ProtectedRoute path='/categories' component={CategoriesPage} exact />
-                <ProtectedRoute path='/settings' component={RemoveProfilePage} exact />
                 <ProtectedRoute path='/profiles' component={AccountPage} exact />
+
+                <ProtectedRoute path='/raports' component={RaportPage} exact />
+                <ProtectedRoute path='/raports/preview' component={RaportPreview} exact />
+
+                <ProtectedRoute path='/settings' component={RemoveProfilePage} exact />
+                
                 <Route component={NotFoundPage} />
             </Switch>
         </div>

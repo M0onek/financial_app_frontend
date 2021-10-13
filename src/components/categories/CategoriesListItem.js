@@ -91,7 +91,7 @@ class CategoriesListItem extends React.Component {
     renderNormalButtons = () => {
         return (
             <div className="list-item__button-group">
-                <button className="list-item__button list-item--green material-icons" onClick={this.onEditClick}>edit</button>
+                <button className="list-item__button list-item--blue material-icons" onClick={this.onEditClick}>edit</button>
                 <button className="list-item__button list-item--red material-icons" onClick={this.onDeleteClick}>delete</button>
             </div>
         )

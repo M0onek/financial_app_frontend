@@ -6,12 +6,18 @@ import { connect } from 'react-redux';
 
 const AccountPage = (props) => (
     <div>
+        <div className='summary'>
+            <div className='content-container'>
+                <h1 className='summary__title'>Portfele</h1>        
+            </div>
+            
+            <AccountForm
+                onSubmit={(account) => {
+                    props.dispatch(addAccount(account));
+                }}
+            />
+        </div>
         <AccountList />
-        <AccountForm
-            onSubmit={(account) => {
-                props.dispatch(addAccount(account));
-            }}
-        />
     </div>
 );
 

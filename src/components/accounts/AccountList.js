@@ -5,11 +5,6 @@ import AccountListItem from './AccountListItem';
 
 const AccountList = (props) => (
     <div>
-        <div className='summary'>
-            <div className='content-container'>
-                <h1 className='summary__title'>Portfele</h1>        
-            </div>    
-        </div>
         <div className='content-container'>
             <div className='list-header'>Portfele</div>
             {props.accounts.map((account) => {

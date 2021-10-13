@@ -37,19 +37,18 @@ class CategoriesForm extends React.Component {
 
     render() {
         return (
-            <div className='content-container margin-top'>                
-                <form className='form' onSubmit={this.onSubmit}>
-                    {this.state.error && <p className='form__error'>{this.state.error}</p>}
+            <div style={{marginLeft: '2rem'}}>                
+                <form className='form' style={{flexDirection: 'row'}} onSubmit={this.onSubmit}>
                     <input
-                        className='text-input'
+                        className='text-input flex__grow radius-left'
                         type='text'
                         placeholder='Dodaj nową kategorię'
                         value={this.state.name}
                         onChange={this.onNameChange}
-                        autoFocus
                     />
-                    <button className='button'>Dodaj kategorię</button>
+                    <button className='button radius-right'>Dodaj</button>
                 </form>
+                {this.state.error && <div className='form__error--compact'>{this.state.error}</div>}
             </div>
         )
     }
