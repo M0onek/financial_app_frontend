@@ -2,6 +2,7 @@ import React from 'react';
 import PieChart from './PieChart';
 import AreaChart from './AreaChart';
 import DateFilter from '../DateFilter';
+import BarChart from './BarChart';
 
 const ChartsPage = () => (
     <div>
@@ -14,7 +15,15 @@ const ChartsPage = () => (
             </div>
         </div>
         
-        <AreaChart mode="income" />
+        <AreaChart/>
+
+        <div className='summary'>
+            <div className='content-container'>
+                <h1 className='summary__title'>Miesięczne saldo</h1>            
+            </div>       
+        </div>
+
+        <BarChart/>
 
         <div className="flex-columns">
             <div>

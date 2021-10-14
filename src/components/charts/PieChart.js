@@ -1,17 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import selectFiltered from '../../selectors/expenses';
-
-const chartState = {
-    loaded: false,
-    promise: new Promise((resolve) => {
-        google.charts.load('current', {'packages':['corechart']})
-        google.charts.setOnLoadCallback(() => {
-            chartState.loaded = true
-            resolve()
-        })
-    }),
-}
+import ChartState from './ChartState';
 
 class PieChart extends React.Component {
 
@@ -21,13 +11,11 @@ class PieChart extends React.Component {
             id: crypto.randomUUID()
         }
 
-        chartState.promise = chartState.promise.then(() => {
-            this.drawChart()
-        })
+        ChartState.onLoad(this.drawChart)
     }
 
     componentDidUpdate() {
-        if (chartState.loaded) {
+        if (ChartState.loaded) {
             this.drawChart()
         }
     }

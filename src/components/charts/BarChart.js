@@ -4,7 +4,7 @@ import selectFiltered from '../../selectors/expenses';
 import moment from 'moment';
 import ChartState from './ChartState';
 
-class AreaChart extends React.Component {
+class BarChart extends React.Component {
 
     constructor(props) {
         super(props)
@@ -23,28 +23,21 @@ class AreaChart extends React.Component {
     }
 
     getChartData = () => {
-        const data = [['Dzień', 'Przychody', 'Wydatki']]
+        const data = [['Miesiąc', 'Przychody', 'Wydatki']]
         
-        let start = this.props.filters.startDate
-        let end = this.props.filters.endDate
-        let lastDate = moment()
+        let start = moment()
+        let end = moment()
 
-        if (end === null) end = moment()
-        else end = moment(end)
+        this.props.incomes.forEach(value => {
+            if (moment(value.date).isBefore(start, 'month')) start = value.date
+            if (moment(value.date).isAfter(end, 'month')) end = value.date
+        })
 
-        if (start === null) {
-            let last = moment()
-            
-            this.props.incomes.forEach(value => {
-                if (moment(value.date).isBefore(last, 'day')) last = value.date
-            })
+        this.props.expenses.forEach(value => {
+            if (moment(value.date).isBefore(start, 'month')) start = value.date
+            if (moment(value.date).isAfter(end, 'month')) end = value.date
+        })
 
-            this.props.expenses.forEach(value => {
-                if (moment(value.date).isBefore(last, 'day')) last = value.date
-            })
-
-            start = last
-        } else start = moment(start)
 
         if (moment(start).isAfter(end)) {
             const tmp = moment(start)
@@ -52,48 +45,33 @@ class AreaChart extends React.Component {
             end = tmp
         }
 
-        for (let day = moment(start); day.isSameOrBefore(end, 'day'); day.add(1, 'days')) {
-            data.push([day.format('YYYY-MM-DD'), 0, 0])
+        for (let month = moment(start); month.isSameOrBefore(end, 'month'); month.add(1, 'months')) {
+            data.push([month.format('YYYY-MM'), 0, 0])
         }
 
         this.props.incomes.forEach(value => {
-            const date = moment(value.date, 'YYYY-MM-DD')
+            const date = moment(value.date, 'YYYY-MM')
 
             for (let i = 1; i < data.length; i++) {
                 if (moment(data[i][0]).isSame(date)) {
-                    if (date.isAfter(lastDate, 'day')) lastDate = date
                     data[i][1] += parseFloat(value.amount)
                 }
             }
         })
 
         this.props.expenses.forEach(value => {
-            const date = moment(value.date, 'YYYY-MM-DD')
+            const date = moment(value.date, 'YYYY-MM')
 
             for (let i = 1; i < data.length; i++) {
                 if (moment(data[i][0]).isSame(date)) {
-                    if (date.isAfter(lastDate, 'day')) lastDate = date
                     data[i][2] += parseFloat(value.amount)
                 }
             }
         })
 
-        let incomesSum = 0
-        let expensesSum = 0
-        const badDate = moment(start).isAfter(lastDate, 'day')
-
         for (let i = 1; i < data.length; i++) {
             const date = moment(data[i][0])
-            data[i][0] = date.format('D.MM')
-            if (date.isAfter(lastDate, 'day') && !badDate) {
-                data[i][1] = undefined
-                data[i][2] = undefined
-            } else {
-                incomesSum += data[i][1]
-                expensesSum += data[i][2]
-                data[i][1] = incomesSum
-                data[i][2] = expensesSum
-            }
+            data[i][0] = date.format('MMMM YYYY')
         }
 
         return data
@@ -107,7 +85,7 @@ class AreaChart extends React.Component {
 
         if (this.state.chart === null) {
             this.setState({
-                chart: new google.visualization.AreaChart(document.getElementById(this.state.id))
+                chart: new google.visualization.ColumnChart(document.getElementById(this.state.id))
             }, () => {
                 const data = google.visualization.arrayToDataTable(this.getChartData())
                 this.state.chart.draw(data, options)
@@ -134,10 +112,10 @@ class AreaChart extends React.Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        incomes: selectFiltered(state.incomes, state.filters, state.activeAccount),
-        expenses: selectFiltered(state.expenses, state.filters, state.activeAccount),
+        incomes: state.incomes,
+        expenses: state.expenses,
         filters: state.filters,
     }
 }
 
-export default connect(mapStateToProps)(AreaChart);
+export default connect(mapStateToProps)(BarChart);

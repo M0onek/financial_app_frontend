@@ -12,12 +12,13 @@ const CategoriesPage = (props) => (
                 <div className='content-container'>
                     <h1 className='summary__title'>Kategorie przychodów</h1>
                 </div>
-
-                <CategoriesForm mode="income"
-                    onSubmit={(category) => {
-                        props.dispatch(addIncomeCategory({id: props.activeAccountId}, category));
-                    }}
-                />
+                <div className='content-container' style={{marginBottom: '0'}}>
+                    <CategoriesForm mode="income"
+                        onSubmit={(category) => {
+                            props.dispatch(addIncomeCategory({id: props.activeAccountId}, category));
+                        }}
+                    />
+                </div>
             </div>
 
             <CategoriesList mode="income" />
@@ -25,11 +26,10 @@ const CategoriesPage = (props) => (
         
         <div>
             <div className='summary'>
-                <div className='content-container'>
+                <div className='content-container--right'>
                     <h1 className='summary__title'>Kategorie wydatków</h1>            
                 </div>
-
-                <div style={{marginRight: '2rem'}}>
+                <div className='content-container--right' style={{marginBottom: '0'}}>
                     <CategoriesForm mode="expense"
                         onSubmit={(category) => {
                             props.dispatch(addExpenseCategory({id: props.activeAccountId}, category));

@@ -1,25 +1,47 @@
-.raport__table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid black;
+.raport-header {
+    display: none;
+}
 
+.raport {
+    table {
+        margin-top: 2rem;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    caption {
+        text-align: left;
+        margin: 3rem 0.2rem 1rem;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    thead {
+        background-color: #f7f7f7;
+    }
     
     th {
-        text-align: center;
-        border: 1px solid black;
         font-size: 1.2rem;
-        padding: 0.3em 1em;
+        padding: 0.6em 1em;
     }
     
     td {
         text-align: right;
-        border-left: 1px solid black;
-        border-right: 1px solid black;
         padding: 0.3em 0.6em;
+    }
+    
+    tr {
+        border: 1px solid black;
     }
     
     .raport--text {
         text-align: left;
         width: 100%;
+    }
+
+    .raport--title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin: 0.2rem 0;
     }
 }

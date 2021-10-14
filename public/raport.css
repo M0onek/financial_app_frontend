@@ -1,33 +1,76 @@
 @page {
-    size: 7in 9.25in;
-    margin: 27mm 16mm;
+    size: A4;
+    /* margin: 27mm 16mm; */
+}
+
+:root {
+    max-width: 40rem;
+    margin: 0 auto;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+@media print {
+    :root {
+        max-width: 100%;
+        margin: 2rem;
+    }
 }
 
 * {
     box-sizing: border-box;
 }
 
-table {
+
+.raport-header {
+    font-size: 5rem;
+    padding: 3rem 0;
+    color: #1c88bf;
+    font-weight: bold;
+}
+
+.raport table {
+    margin-top: 3rem;
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid black;
+    break-inside: avoid;
 }
 
-th {
-    text-align: center;
-    border: 1px solid black;
+.raport table:first-of-type {
+    margin-top: 0;
+}
+
+.raport caption {
+    text-align: left;
+    margin: 3rem 0.2rem 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.raport thead {
+    background-color: #f7f7f7;
+}
+
+.raport th {
     font-size: 1.2rem;
-    padding: 0.3em 1em;
+    padding: 0.6em 1em;
 }
 
-td {
+.raport td {
     text-align: right;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
     padding: 0.3em 0.6em;
 }
 
-.raport--text {
+.raport tr {
+    border: 1px solid black;
+}
+
+.raport .raport--text {
     text-align: left;
     width: 100%;
+}
+
+.raport .raport--title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.2rem 0;
 }

@@ -1,9 +1,14 @@
 import moment from 'moment'
 
+moment.locale('pl')
+
 const defaultState = {
     sortBy: 'date',
-    startDate: moment().startOf('month'),
-    endDate: moment().endOf('month'),
+    raport: 'all',
+    startDate: null,
+    endDate: null,
+    // startDate: moment().startOf('month'),
+    // endDate: moment().endOf('month'),
 }
 
 export default (state = defaultState, action) => {
@@ -14,6 +19,15 @@ export default (state = defaultState, action) => {
 
         case 'SORT_BY_DATE':
             return { ...state, sortBy: 'date' }
+
+        case 'RAPORT_ALL':
+            return { ...state, raport: 'all' }
+
+        case 'RAPORT_INCOMES':
+            return { ...state, raport: 'incomes' }
+
+        case 'RAPORT_EXPENSES':
+            return { ...state, raport: 'expenses' }
 
         case 'SET_START_DATE':
             return { ...state, startDate: action.startDate }

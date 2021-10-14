@@ -94,20 +94,20 @@ class IncomeForm extends React.Component {
                             isOutsideRange={(day) => false}
                         />
                     </div>
-                    <div className="flex">
+                    {/* <div className="flex"> */}
                         <select
-                            className='select flex__grow radius-left'
+                            className='select flex__grow'
                             value={this.state.categoryId} 
                             onChange={this.onIncomeCategoryChange}>
                             <option disabled value='default'>Wybierz kategorie</option>
                             {this.categoryOptions(this.props.incomeCategories)}
                         </select>
-                        <button
+                        {/* <button
                             className="button button--no-margin radius-right"
                             onClick={this.onAddCategory}>
-                            Nowy
+                            Nowa
                         </button>
-                    </div>
+                    </div> */}
                     <textarea
                         className='textarea'
                         placeholder='Dodaj komentarz (opcionalne)'

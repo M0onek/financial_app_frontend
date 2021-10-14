@@ -37,7 +37,7 @@ class AccountForm extends React.Component {
     render() {
         return (
             <div className='content-container' style={{marginBottom: '0'}}>                
-                <form className='form row' onSubmit={this.onSubmit}>
+                <form className='form--compact' onSubmit={this.onSubmit}>
                     <input
                         className='text-input flex__grow radius-left'
                         type='text'

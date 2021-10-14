@@ -30,7 +30,7 @@
     }
 }
 
-@media (min-width: 100rem) {
+@media (min-width: $breakpoint) {
     .SingleDatePicker--margin {
         height: 50px;
         margin-top: 2rem;

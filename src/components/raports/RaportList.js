@@ -7,31 +7,37 @@ import moment from 'moment';
 
 const RaportListItem = ({category, date, amount}) => (
     <tr>
-        <td className="raport--text">{category ? category.name : ''}</td>
-        <td>{moment(date).format('DD/MM/YYYY')}</td>
+        <td className="raport--text">
+            <div className="raport--title">{category ? category.name : ''}</div>
+            <div>{moment(date).format('DD/MM/YYYY')}</div>
+        </td>
         <td>{numeral(amount).format('0,0.00')} zł</td>
     </tr>
 )
 
 const RaportList = (props) => (
-    <div className="raport">
-        <table className="raport__table">
-            <thead>
-                <tr>
-                    <th>{props.income ? 'Przychody' : 'Wydatki'}</th>
-                    <th>Data</th>
-                    <th>Wartość</th>
+    <table>
+        {/* <caption>{props.income ? 'Przychody' : 'Wydatki'}</caption> */}
+        <thead>
+            <tr>
+                <th style={{textAlign: 'left'}}>{props.income ? 'Przychody' : 'Wydatki'}</th>
+                <th style={{textAlign: 'right'}}>Wartość</th>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                props.values.length === 0
+                ? <tr>
+                    <td colSpan={2} style={{textAlign: 'center', padding: '1rem'}}>{props.income ? 'Brak przychodów' : 'Brak wydatków'}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {props.values.map(value => {
+                : props.values.map(value => {
                     const category = selectCategory(props.categories, value.categoryId)
                     const id = props.income ? value.incomeId : value.expenseId
                     return <RaportListItem key={id} category={category} {...value}/>
-                })}
-            </tbody>
-        </table>
-    </div>
+                  })
+            }
+        </tbody>
+    </table>
 );
 
 const mapStateToProps = (state, props) => {

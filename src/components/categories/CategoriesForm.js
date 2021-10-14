@@ -37,8 +37,8 @@ class CategoriesForm extends React.Component {
 
     render() {
         return (
-            <div style={{marginLeft: '2rem'}}>                
-                <form className='form' style={{flexDirection: 'row'}} onSubmit={this.onSubmit}>
+            <div>                
+                <form className='form--compact' onSubmit={this.onSubmit}>
                     <input
                         className='text-input flex__grow radius-left'
                         type='text'

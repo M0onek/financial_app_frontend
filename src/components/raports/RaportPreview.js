@@ -7,14 +7,29 @@ import RaportList from "./RaportList";
 class RaportPreview extends React.Component {
 
     render() {
-        return (
-            <div className='raport'>
-                <h1>Przychody</h1>
-                <RaportList mode="income" />
+        const raport = this.props.filters.raport
+        const income = raport === 'all' || raport === 'incomes'
+        const expense = raport === 'all' || raport === 'expenses'
 
-                <h1>Wydatki</h1>
-                <RaportList mode='expense' />
-            </div>
+        return (
+            <table style={{width: '100%'}}>
+                <thead>
+                    <tr>
+                        <th className="raport-header">Financify</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div className='raport'>
+                                { income && <RaportList mode="income" />}
+                                { expense && <RaportList mode='expense' />}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
         )
     }
 }

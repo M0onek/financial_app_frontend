@@ -27,3 +27,12 @@
 .button--secondary {
     background: #888;
 }
+
+.button--red {
+    color: white; // 100
+    background: #D32F2F; // 700
+
+    &:hover,  &:disabled  {
+        background: #EF5350; // 400
+    }
+}

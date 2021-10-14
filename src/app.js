@@ -13,16 +13,9 @@ import { getExpenses } from './actions/expenses';
 import { getIncomes } from './actions/incomes';
 import moment from 'moment';
 
-export const store = configureStore();
-
-// export const persistor = persistor();
-
-// store.subscribe(() => {{
-//     const state = store.getState();
-//     console.log(state);
-// }})
-
 moment.locale('pl')
+
+export const store = configureStore();
 
 const jsx = (
     <Provider store={store}>

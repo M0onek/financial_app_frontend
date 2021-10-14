@@ -16,16 +16,16 @@ class RaportPage extends React.Component {
 
         doc.write()
         doc.write(`
-        <html>
-            <head>
-                <meta charset="utf-8"/>
-                <title>Raport</title>
-                <link rel="stylesheet" href="/raport.css"/>
-            </head>
-            <body onload="window.print(); /*window.close();*/">
-                ${raport.innerHTML}
-            </body>
-        </html>`
+            <html>
+                <head>
+                    <meta charset="utf-8"/>
+                    <title>Raport</title>
+                    <link rel="stylesheet" href="/raport.css"/>
+                </head>
+                <body onload="window.print(); window.close();">
+                    ${raport.innerHTML}
+                </body>
+            </html>`
         )
         
         doc.close()
@@ -41,7 +41,7 @@ class RaportPage extends React.Component {
                     </div>
                     <div className="summary--center">
                         <div className="flex">
-                            <DateFilter showSortBy />
+                            <DateFilter showSortBy showRaport />
                             <button className="button" onClick={this.print}>
                                 <span className="material-icons" style={{verticalAlign: 'middle'}}>print</span> <span style={{verticalAlign: 'middle'}}>Drukuj</span>
                             </button>

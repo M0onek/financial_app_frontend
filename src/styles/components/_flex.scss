@@ -24,7 +24,7 @@
     }
 }
 
-@media (min-width: 100rem) {
+@media (min-width: $breakpoint) {
     .flex-columns {
         flex-direction: row;
     }
@@ -34,7 +34,7 @@
     }
 }
 
-@media (max-width: 100rem) {
+@media (max-width: $breakpoint) {
     .desktop-only {
         display: none;
     }

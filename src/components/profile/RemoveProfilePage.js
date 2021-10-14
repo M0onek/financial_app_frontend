@@ -9,7 +9,7 @@ const RemoveProfilePage = () => (
             </div>            
         </div>
         <div className='content-container' style={{ marginTop: '2rem' }}>
-            <button className='button button--secondary' onClick={() => { auth.removeUser() }}>Usuń konto</button>
+            <button className='button button--red' onClick={() => { auth.removeUser() }}>Usuń konto</button>
         </div>
     </div>
 )

@@ -105,7 +105,7 @@ class CategoriesListItem extends React.Component {
                         ? <input type="text" className="list-item__input" value={this.state.newName} onChange={this.onNameChange} autoFocus/>
                         : <h3 className='list-item__title'>{this.state.name}</h3>
                     }
-                    <h3 className='list-item__data'>Łącznie: {this.getCategoryAmount(this.props.values)} zł</h3>
+                    <h3 className='list-item__data'>{this.getCategoryAmount(this.props.values)} zł</h3>
                     { this.state.edit
                         ? this.renderEditButtons()
                         : this.renderNormalButtons()

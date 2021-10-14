@@ -5,7 +5,7 @@ import selectCategory from '../../selectors/selectCategory';
 import selectExpenses from '../../selectors/expenses';
 
 const ExpenseList = (props) => (
-    <div className='content-container'>
+    <div className='content-container--right'>
         <div className='list-header'>
             <div>Wydatki</div>
             <div>Wartość</div>
