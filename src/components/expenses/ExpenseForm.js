@@ -47,7 +47,7 @@ class ExpenseForm extends React.Component {
     onSubmit = ((event) => {
         event.preventDefault();
         if (!this.state.amount || this.state.categoryId === 'default') {
-            this.setState(() => ({ error: 'Please provide amount and pick a category.' }))
+            this.setState(() => ({ error: 'Wprowadź kwotę oraz wybierz kategorię.' }))
         } else {
             this.setState(() => ({ error: '' }));
             this.props.onSubmit({

@@ -46,7 +46,7 @@ export const login = (user = {
 
 export const logout = () => {
     return (dispatch) => {
-        return axios.post('logout', null, { headers: authHeader() })
+        return axios.post('/logout', null, { headers: authHeader() })
         .then(() => {
             dispatch({
                 type: 'LOGOUT_USER',
@@ -60,7 +60,7 @@ export const logout = () => {
 
 export const logoutAll = () => {
     return (dispatch) => {
-        return axios.post('logoutAll', null, { headers: authHeader() })
+        return axios.post('/logoutAll', null, { headers: authHeader() })
         .then(() => {
             dispatch({
                 type: 'LOGOUT_ALL_USERS',
@@ -71,6 +71,19 @@ export const logoutAll = () => {
         });
     }
 }
+
+// export const changePassword = (currentPassword, newPassword) => {
+//     return (dispatch) => {
+//         return axios.patch('/me/password', { currentPassword, newPassword }, { headers: authHeader() })
+//         .then(() => {
+//             dispatch({
+//                 type: 'CHANGE_PASSWORD',
+//             });
+//         }).catch((error) => {
+//             console.log('error', error);
+//         });
+//     }
+// }
 
 export const editUser = (updates) => {
     return (dispatch) => {

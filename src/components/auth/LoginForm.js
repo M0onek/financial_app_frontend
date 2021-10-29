@@ -39,7 +39,7 @@ class LoginForm extends React.Component {
         const password = event.target.value;
         this.setState(() => ({ password }));
         let errors = this.state.errors;
-        errors.password = event.target.value.length < 8 ? 'Hasło musi mieć minimum 8 znaków' : '';
+        errors.password = event.target.value.length < 8 ? 'Hasło musi mieć minimum 8 znaków.' : '';
     };
 
     onSubmit = ((event) => {

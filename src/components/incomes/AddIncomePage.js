@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import IncomeForm from './IncomeForm';
 import { addIncome } from '../../actions/incomes';
+import { getGoals } from '../../actions/goals';
 
 const AddTransactionPage = (props) => (
     <div>
@@ -14,6 +15,7 @@ const AddTransactionPage = (props) => (
             <IncomeForm
                 onSubmit={(income) => {
                     props.dispatch(addIncome({id: props.activeAccountId }, income));
+                    props.dispatch(getGoals({id: props.activeAccountId}))
                     props.history.push(`/dashboard`);
                 }}
             />

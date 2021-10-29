@@ -33,7 +33,7 @@
     transition: min-height $anim-time, visibility $anim-time, background $anim-time;
 
     .menu--collapsed & {
-        min-height: 4rem;
+        min-height: 8rem;
         background: transparent;
     }
 

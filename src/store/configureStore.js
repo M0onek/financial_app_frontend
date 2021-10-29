@@ -6,6 +6,7 @@ import expenseCategoriesReducer from '../reducers/expenseCategoriesReducer';
 import incomeCategoriesReducer from '../reducers/incomeCategoriesReducer';
 import expensesReducer from '../reducers/expensesReducer';
 import incomesReducer from '../reducers/incomesReducer';
+import goalsReducer from '../reducers/goalsReducer';
 import filtersReducer from '../reducers/filtersReducer';
 import activeAccountReducer from '../reducers/activeAccountReducer';
  
@@ -18,13 +19,16 @@ export default () => {
             incomeCategories: incomeCategoriesReducer,
             expenses: expensesReducer,
             incomes: incomesReducer,
+            goals: goalsReducer,
             filters: filtersReducer,
             activeAccount: activeAccountReducer
         }),
-        compose(
+        window.__REDUX_DEVTOOLS_EXTENSION__
+        ? compose(
             applyMiddleware(thunk),
-            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-        )
+            window.__REDUX_DEVTOOLS_EXTENSION__(),
+          )
+        : applyMiddleware(thunk),
     );
     return store;
 };

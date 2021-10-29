@@ -28,6 +28,15 @@
     background: #888;
 }
 
+.button--gray {
+    color: #F5F5F5; // 100
+    background: #9E9E9E; // 500
+
+    &:hover,  &:disabled  {
+        background: #E0E0E0; // 300
+    }
+}
+
 .button--red {
     color: white; // 100
     background: #D32F2F; // 700

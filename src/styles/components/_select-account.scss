@@ -52,7 +52,7 @@
     left: 0;
     right: 0;
     overflow: hidden;
-    min-width: 10rem;
+    min-width: 15rem;
 }
 
 .select-account__options-content {
@@ -61,7 +61,7 @@
     border-top: none;
     box-shadow: 0 0 5px $light-grey;
     border-radius: 0 0 $radius $radius;
-    min-width: 10rem;
+    min-width: 15rem;
     height: 100%;
     transform: translate(0, 0);
     transition: transform $anim-time, height $anim-time;

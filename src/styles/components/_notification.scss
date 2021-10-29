@@ -1,0 +1,64 @@
+.notification-icon {
+    position: relative;
+    width: min-content;
+}
+
+.notification-icon__count {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.2rem;
+    background: $red;
+    padding: 0.2em;
+    font-size: 0.6rem;
+    border-radius: 2em;
+    min-width: 2em;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.notification-box {
+    position: absolute;
+    display: block;
+    left: 100%;
+    top: 0;
+    overflow: hidden;
+    min-height: 100%;
+    min-width: 100%;
+    transition: transform 0ms step-start 0ms;
+}
+
+.notification-box__content {
+    background: $off-white;
+    border: 1px solid $light-grey;
+    display: block;
+    background: $off-white;
+    border: 1px solid $light-grey;
+    border-radius: $radius;
+    min-width: 35rem;
+    transform: translate(0, 0);
+    min-height: 10rem;
+    transition: transform $anim-time, height $anim-time ease $anim-time;
+}
+
+.notification--collapsed {
+    .notification-box {
+        transform: scale(0, 0);
+        transition: transform $anim-time step-end $anim-time;
+    }
+    
+    .notification-box__content {
+        transform: translate(-105%, 0);
+        height: 0;
+    }
+}
+
+.notification__overlay {
+    position: fixed;
+    inset: 0;
+
+    &.notification--collapsed {
+        display: none;
+    }
+}

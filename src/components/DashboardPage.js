@@ -5,7 +5,7 @@ import IncomeList from './incomes/IncomeList';
 import IncomesSummary from './incomes/IncomesSummary';
 import DateFilter from './DateFilter';
 
-const DashbordPage = () => (
+const DashboardPage = () => (
     <div>
         <div className="desktop-only">
             <div className='flex-columns'>
@@ -39,4 +39,4 @@ const DashbordPage = () => (
     </div>
 );
 
-export default DashbordPage;
+export default DashboardPage;

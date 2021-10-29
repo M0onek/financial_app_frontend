@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import selectFiltered from '../../selectors/expenses';
 import RaportList from "./RaportList";
+// import '../../../public/raport.css';
 
 class RaportPreview extends React.Component {
 

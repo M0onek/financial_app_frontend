@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AccountSelector from './accounts/AccountSelector';
 import auth from '../services/auth';
+import NotificationIcon from './notifications/NotificationIcon';
 
 class Menu extends React.Component {
     constructor(props) {
@@ -44,6 +45,7 @@ class Menu extends React.Component {
                         </NavLink>
                     </div>
                     <AccountSelector onChanged={this.onNavClick}/>
+                    <NotificationIcon/>
                 </div>
 
                 <ul className="menu__list">
@@ -71,6 +73,12 @@ class Menu extends React.Component {
                         <NavLink className="menu__link" to="/profiles" activeClassName="active" onClick={this.onNavClick}>
                             <span className="material-icons menu__icon">account_balance_wallet</span>
                             <span className="menu__text">Portfele</span>
+                        </NavLink>
+                    </li>
+                    <li className="menu__list-item">
+                        <NavLink className="menu__link" to="/goals" activeClassName="active" onClick={this.onNavClick}>
+                            <span className="material-icons menu__icon">task_alt</span>
+                            <span className="menu__text">Cele</span>
                         </NavLink>
                     </li>
                     <li className="menu__list-item">

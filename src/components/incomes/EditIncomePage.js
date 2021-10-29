@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import IncomeForm from './IncomeForm';
 import { editIncome, removeIncome } from '../../actions/incomes';
+import { getGoals } from '../../actions/goals';
 
 const EditIncomePage = (props) => {
     if (props.income === undefined) return <Redirect to="/dashboard"/>
@@ -19,10 +20,12 @@ const EditIncomePage = (props) => {
                 income={props.income}
                 onSubmit={(income) => {
                     props.dispatch(editIncome({ id: props.income.accountId }, { id: props.income.incomeId }, income));
+                    props.dispatch(getGoals({id: props.income.accountId}))
                     props.history.push(`/dashboard`);
                 }} />
-                <button className='button button--secondary' onClick={() => {
+                <button className='button button--red' onClick={() => {
                     props.dispatch(removeIncome({ id: props.income.accountId }, { id: props.income.incomeId }))
+                    props.dispatch(getGoals({id: props.income.accountId}))
                     props.history.push(`/dashboard`);
                 }}>Usuń</button>
             </div>

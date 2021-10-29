@@ -10,12 +10,15 @@ import AddIncomePage from '../components/incomes/AddIncomePage';
 import EditIncomePage from '../components/incomes/EditIncomePage';
 import SignupPage from '../components/auth/SignupPage';
 import ProtectedRoute from './ProtectedRoute';
-import RemoveProfilePage from '../components/profile/RemoveProfilePage';
+import SettingsPage from '../components/settings/SettingsPage';
 import createHistory from 'history/createBrowserHistory';
-import DashbordPage from '../components/DashboardPage';
+import DashboardPage from '../components/DashboardPage';
 import ChartsPage from '../components/charts/ChartsPage';
 import RaportPage from '../components/raports/RaportPage';
 import RaportPreview from '../components/raports/RaportPreview';
+import GoalsPage from '../components/goals/GoalsPage';
+import AddGoalPage from '../components/goals/AddGoalPage';
+import EditGoalPage from '../components/goals/EditGoalPage';
 
 export const history = createHistory();
 
@@ -27,7 +30,7 @@ const AppRouter = () => (
                 <Route path='/login' component={LoginPage} />
                 <Route path='/signup' component={SignupPage} />
 
-                <ProtectedRoute path='/dashboard' component={DashbordPage} exact />
+                <ProtectedRoute path='/dashboard' component={DashboardPage} exact />
                 <ProtectedRoute path='/dashboard/incomes/create' component={AddIncomePage} />
                 <ProtectedRoute path='/dashboard/incomes/:incomeId/edit' component={EditIncomePage} />
                 <ProtectedRoute path='/dashboard/expenses/create' component={AddExpensePage} />
@@ -37,10 +40,14 @@ const AppRouter = () => (
                 <ProtectedRoute path='/categories' component={CategoriesPage} exact />
                 <ProtectedRoute path='/profiles' component={AccountPage} exact />
 
+                <ProtectedRoute path='/goals' component={GoalsPage} exact />
+                <ProtectedRoute path='/goals/create' component={AddGoalPage} />
+                <ProtectedRoute path='/goals/:goalId/edit' component={EditGoalPage} />
+
                 <ProtectedRoute path='/raports' component={RaportPage} exact />
                 <ProtectedRoute path='/raports/preview' component={RaportPreview} exact />
 
-                <ProtectedRoute path='/settings' component={RemoveProfilePage} exact />
+                <ProtectedRoute path='/settings' component={SettingsPage} exact />
                 
                 <Route component={NotFoundPage} />
             </Switch>

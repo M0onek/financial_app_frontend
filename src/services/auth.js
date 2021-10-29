@@ -8,6 +8,7 @@ import { getExpenseCategories } from '../actions/expenseCategories';
 import { getIncomeCategories } from '../actions/incomeCategories';
 import { getExpenses } from '../actions/expenses';
 import { getIncomes } from '../actions/incomes';
+import { getGoals } from '../actions/goals';
 
 class Auth {
   signup(userData) {
@@ -49,6 +50,7 @@ class Auth {
         store.dispatch(getIncomeCategories({ id: activeAccountId }));
         store.dispatch(getExpenses({ id: activeAccountId }));
         store.dispatch(getIncomes({ id: activeAccountId }));
+        store.dispatch(getGoals({ id: activeAccountId }));
         history.push('/dashboard');
       } else {
         history.push('/accounts');
@@ -70,6 +72,17 @@ class Auth {
       history.push('/login')
     }).catch((error) => {
       console.log('error', error);
+    });
+  }
+
+  changePassword(currentPassword, newPassword) {
+    return axios.patch('/me/password', { currentPassword, newPassword }, { headers: authHeader() })
+    .catch((error) => {
+      if (error.response.status === 400) {
+        throw new Error(error.response.data);
+      } else {
+        console.log('error', error);
+      }
     });
   }
 

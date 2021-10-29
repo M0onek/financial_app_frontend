@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
 import { addExpense } from '../../actions/expenses';
+import { getGoals } from '../../actions/goals';
 
 const AddExpensePage = (props) => (
     <div>
@@ -14,6 +15,7 @@ const AddExpensePage = (props) => (
             <ExpenseForm
                 onSubmit={(expense) => {
                     props.dispatch(addExpense({id: props.activeAccountId }, expense));
+                    props.dispatch(getGoals({id: props.activeAccountId}))
                     props.history.push(`/dashboard`);
                 }}
             />

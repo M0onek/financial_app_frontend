@@ -5,6 +5,7 @@ import { getIncomes } from '../../actions/incomes';
 import { getExpenses } from '../../actions/expenses';
 import { getIncomeCategories } from '../../actions/incomeCategories';
 import { getExpenseCategories } from '../../actions/expenseCategories';
+import { getGoals } from '../../actions/goals';
 
 class AccountSelector extends React.Component {
 
@@ -26,6 +27,7 @@ class AccountSelector extends React.Component {
         this.props.dispatch(getIncomeCategories({ id: accountId }))
         this.props.dispatch(getExpenses({ id: accountId }))
         this.props.dispatch(getIncomes({ id: accountId }))
+        this.props.dispatch(getGoals({ id: activeAccountId }));
 
         if (this.props.onChanged) this.props.onChanged()
     }
