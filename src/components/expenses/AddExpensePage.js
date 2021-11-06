@@ -14,8 +14,8 @@ const AddExpensePage = (props) => (
         <div className='content-container'>
             <ExpenseForm
                 onSubmit={(expense) => {
-                    props.dispatch(addExpense({id: props.activeAccountId }, expense));
-                    props.dispatch(getGoals({id: props.activeAccountId}))
+                    props.dispatch(addExpense({id: props.activeAccountId }, expense))
+                    .then(() => props.dispatch(getGoals({id: props.activeAccountId})));
                     props.history.push(`/dashboard`);
                 }}
             />

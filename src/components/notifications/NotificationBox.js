@@ -4,15 +4,22 @@ import NotificationItem from "./NotificationItem";
 
 const done = (value, amount) => parseFloat(value) >= parseFloat(amount)
 
-const NotificationBox = (props) => (
-    <div className="notification-box">
-        <div className="notification-box__content">
-            { props.goals.filter(goal => done(goal.value, goal.amount)).map(goal => (
-                <NotificationItem key={goal.goalId} {...goal} />
-            )) }
+const NotificationBox = (props) => {
+    const goals = props.goals.filter(goal => done(goal.value, goal.amount))
+
+    return (
+        <div className="notification-box">
+            <div className="notification-box__content">
+                { goals.length === 0
+                    ? <div className='list-item list-item--message'>Brak powiadomień</div>
+                    : goals.map(goal => (
+                        <NotificationItem key={goal.goalId} {...goal} />
+                    ))
+                }
+            </div>
         </div>
-    </div>
-)
+    )
+}
 
 const mapStateToProps = (state) => {
     return {

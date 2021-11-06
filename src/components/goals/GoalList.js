@@ -22,7 +22,7 @@ const GoalsList = (props) => (
 
 const mapStateToProps = (state) => {
     return {
-        goals: state.goals
+        goals: state.selectedGoals
     }
 }
 

@@ -14,8 +14,8 @@ const AddTransactionPage = (props) => (
         <div className='content-container'>
             <IncomeForm
                 onSubmit={(income) => {
-                    props.dispatch(addIncome({id: props.activeAccountId }, income));
-                    props.dispatch(getGoals({id: props.activeAccountId}))
+                    props.dispatch(addIncome({id: props.activeAccountId }, income))
+                    .then(() => props.dispatch(getGoals({id: props.activeAccountId})));
                     props.history.push(`/dashboard`);
                 }}
             />

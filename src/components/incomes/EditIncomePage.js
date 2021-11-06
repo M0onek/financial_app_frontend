@@ -19,13 +19,13 @@ const EditIncomePage = (props) => {
                 <IncomeForm
                 income={props.income}
                 onSubmit={(income) => {
-                    props.dispatch(editIncome({ id: props.income.accountId }, { id: props.income.incomeId }, income));
-                    props.dispatch(getGoals({id: props.income.accountId}))
+                    props.dispatch(editIncome({ id: props.income.accountId }, { id: props.income.incomeId }, income))
+                    .then(() => props.dispatch(getGoals({id: props.activeAccountId})));
                     props.history.push(`/dashboard`);
                 }} />
                 <button className='button button--red' onClick={() => {
                     props.dispatch(removeIncome({ id: props.income.accountId }, { id: props.income.incomeId }))
-                    props.dispatch(getGoals({id: props.income.accountId}))
+                    .then(() => props.dispatch(getGoals({id: props.activeAccountId})));
                     props.history.push(`/dashboard`);
                 }}>Usuń</button>
             </div>

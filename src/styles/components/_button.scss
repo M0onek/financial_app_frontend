@@ -16,6 +16,10 @@
     color: white;
 }
 
+.button:disabled {
+    background: lighten($blue, 30%);
+}
+
 .button--no-margin {
     margin: 0;
 }

@@ -7,6 +7,7 @@ import incomeCategoriesReducer from '../reducers/incomeCategoriesReducer';
 import expensesReducer from '../reducers/expensesReducer';
 import incomesReducer from '../reducers/incomesReducer';
 import goalsReducer from '../reducers/goalsReducer';
+import selectedGoalsReducer from '../reducers/selectedGoalsReducer';
 import filtersReducer from '../reducers/filtersReducer';
 import activeAccountReducer from '../reducers/activeAccountReducer';
  
@@ -20,6 +21,7 @@ export default () => {
             expenses: expensesReducer,
             incomes: incomesReducer,
             goals: goalsReducer,
+            selectedGoals: selectedGoalsReducer,
             filters: filtersReducer,
             activeAccount: activeAccountReducer
         }),

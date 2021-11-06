@@ -19,13 +19,13 @@ const EditExpensePage = (props) => {
                 <ExpenseForm
                 expense={props.expense}
                 onSubmit={(expense) => {
-                    props.dispatch(editExpense({ id: props.expense.accountId }, { id: props.expense.expenseId }, expense));
-                    props.dispatch(getGoals({id: props.expense.accountId}))
+                    props.dispatch(editExpense({ id: props.expense.accountId }, { id: props.expense.expenseId }, expense))
+                    .then(() => props.dispatch(getGoals({id: props.activeAccountId})));
                     props.history.push(`/dashboard`);
                 }} />
                 <button className='button button--red' onClick={() => {
                     props.dispatch(removeExpense({ id: props.expense.accountId }, { id: props.expense.expenseId }))
-                    props.dispatch(getGoals({id: props.expense.accountId}))
+                    .then(() => props.dispatch(getGoals({id: props.activeAccountId})));
                     props.history.push(`/dashboard`);
                 }}>Usuń</button>
             </div>

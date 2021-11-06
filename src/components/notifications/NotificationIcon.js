@@ -30,7 +30,7 @@ class NotificationIcon extends React.Component {
                 <div className="menu__header-item">
                     <div className="notification-icon" onClick={this.onClick}>
                         <span className="material-icons menu__icon">{ count === 0 ? 'notifications_none' : 'notifications'}</span>
-                        <div className="notification-icon__count">{count}</div>
+                        { count !== 0 && <div className="notification-icon__count">{count}</div>}
                         <div className={this.state.collapsed ? 'notification--collapsed' : ''}>
                             <NotificationBox/>
                         </div>

@@ -1,16 +1,34 @@
 import axios from '../axios/axios';
 import authHeader from '../services/auth-header';
+import { store } from '../app';
+import moment from 'moment';
 
-export const addGoal = ({id}={} , goal = {goalType: null, name: null, amount: null, categoryId: null}) => {
+const isCurrentDate = ({year, month}) => {
+    if (month === undefined) month = moment().month()+1
+    if (year === undefined) year = moment().year()
+    const goalsDate = moment()
+    return goalsDate.month()+1 === month && goalsDate.year() === year
+}
+
+const isSelectedDate = ({year, month}) => {
+    if (month === undefined) month = moment().month()+1
+    if (year === undefined) year = moment().year()
+    const goalsDate = store.getState().filters.goalsDate
+    return goalsDate.month()+1 === month && goalsDate.year() === year
+}
+
+export const addGoal = ({id}={} , goal = {goalType: null, name: null, amount: null, categoryId: null}, params = {}) => {
     return (dispatch) => {
         return axios.post(`accounts/${id}/goals`,
         goal,
-        { headers: authHeader() })
+        { headers: authHeader(), params })
         .then((res) => {
             const goal = res.data;
             dispatch({
                 type: 'ADD_GOAL',
-                goal
+                goal,
+                current: isCurrentDate(params),
+                selected: isSelectedDate(params)
             });
         }).catch((error) => {
             console.log('error', error);
@@ -18,10 +36,10 @@ export const addGoal = ({id}={} , goal = {goalType: null, name: null, amount: nu
     };
 };
 
-export const getGoals = ({id}={}) => {
+export const getGoals = ({id}={}, params = {}) => {
     return (dispatch) => {
         return axios.get(`accounts/${id}/goals`,
-        { headers: authHeader() })
+        { headers: authHeader(), params })
         .then(res => {
             const goals = [];
  
@@ -31,7 +49,9 @@ export const getGoals = ({id}={}) => {
  
             dispatch({
                 type: 'GET_GOALS',
-                goals
+                goals,
+                current: isCurrentDate(params),
+                selected: isSelectedDate(params)
             });
         }).catch((error) => {
             console.log('error', error);
@@ -39,15 +59,17 @@ export const getGoals = ({id}={}) => {
     };
 };
 
-export const getOneGoal = ({id: accId} = {}, {id: goalId} = {}) => {
+export const getOneGoal = ({id: accId} = {}, {id: goalId} = {}, params = {}) => {
     return (dispatch) => {
         return axios.get(`accounts/${accId}/goals/${goalId}`,
-        { headers: authHeader() })
+        { headers: authHeader(), params })
         .then((res) => {
             const goal = res.data;
             dispatch({
                 type: 'GET_ONE_GOAL',
-                goal
+                goal,
+                current: isCurrentDate(params),
+                selected: isSelectedDate(params)
             });
         }).catch((error) => {
             console.log('error', error);
@@ -55,16 +77,18 @@ export const getOneGoal = ({id: accId} = {}, {id: goalId} = {}) => {
     }
 }
 
-export const editGoal = ({ id: accId } = {} , { id: goalId} = {} , updates = {}) => {
+export const editGoal = ({ id: accId } = {} , { id: goalId} = {} , updates = {}, params = {}) => {
     return (dispatch) => {
         return axios.patch(`accounts/${accId}/goals/${goalId}`,
         updates,
-        { headers: authHeader()})
+        { headers: authHeader(), params })
         .then((res) => {
             dispatch({
                 type: 'EDIT_GOAL',
                 updates: res.data,
-                goalId
+                goalId,
+                current: isCurrentDate(params),
+                selected: isSelectedDate(params)
             });
         }).catch((error) => {
             console.log('error', error);
@@ -72,14 +96,16 @@ export const editGoal = ({ id: accId } = {} , { id: goalId} = {} , updates = {})
     }
 };
 
-export const removeGoal = ({ id: accId } = {}, { id: goalId } = {}) => {
+export const removeGoal = ({ id: accId } = {}, { id: goalId } = {}, params = {}) => {
     return (dispatch) => {
         return axios.delete(`accounts/${accId}/goals/${goalId}`, 
-        { headers: authHeader() })
+        { headers: authHeader(), params })
         .then(() => {
             dispatch({
                 type: 'REMOVE_GOAL',
-                goalId
+                goalId,
+                current: isCurrentDate(params),
+                selected: isSelectedDate(params)
             });
         }).catch((error) => {
             console.log('error', error);

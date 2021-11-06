@@ -1,0 +1,23 @@
+.month-selector {
+    display: inline-flex;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    align-items: center;
+    background: white;
+
+    .button {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        
+        .material-icons {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.month-selector__text {
+    padding: 0 2rem;
+    font-weight: bold;
+    min-width: 15rem;
+    text-align: center;
+}

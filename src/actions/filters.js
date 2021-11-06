@@ -27,3 +27,8 @@ export const setEndDate = (endDate) => ({
     type: 'SET_END_DATE',
     endDate
 });
+
+export const setGoalsDate = (goalsDate) => ({
+    type: 'SET_GOALS_DATE',
+    goalsDate
+});

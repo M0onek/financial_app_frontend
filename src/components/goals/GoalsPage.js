@@ -2,6 +2,7 @@ import React from 'react';
 import GoalList from './GoalList';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import MonthSelector from './MonthSelector';
 
 const GoalsPage = (props) => (
     <div>
@@ -10,6 +11,7 @@ const GoalsPage = (props) => (
                 <h1 className='summary__title'>Cele</h1>
                 <div className='summary__actions'>
                     <Link className='button' to='/goals/create'>Dodaj cel</Link>
+                    <MonthSelector/>
                 </div>  
             </div>
         </div>
